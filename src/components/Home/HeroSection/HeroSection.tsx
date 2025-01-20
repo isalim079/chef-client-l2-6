@@ -31,7 +31,6 @@ const HeroSection = () => {
                 alt="Banner Image"
                 className=""
               />
-              {/* <img className="w-[520px]" src="https://i.ibb.co.com/bsjp9B7/heroImg.png" alt="" /> */}
               <div className="border-2 border-dark-green lg:max-w-[85%] "></div>
             </div>
           </div>
