@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Chef",
   description: "Recipe Sharing Community",
 };
 
-export default function RootLayout({
+export default function CommonLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`antialiased`}>{children}</body>
-    </html>
-  );
+  return <div>{children}</div>;
 }
