@@ -1,3 +1,5 @@
+"use client"
+
 import HeroSection from "./HeroSection/HeroSection";
 
 const HomePage = () => {
