@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +6,8 @@ import { CgMenu } from "react-icons/cg";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
-    return (
-        <div className="overflow-hidden absolute z-30 bg-primary-white/70 w-full">
+  return (
+    <div className="overflow-hidden absolute z-30 bg-primary-white/70 w-full">
       <div className="max-w-screen-xl mx-auto">
         <div className="drawer">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -35,32 +35,15 @@ const Navbar = () => {
                     <Link href={"/recipe-feed"}>Recipe Feed</Link>
                   </li>
 
+                  {/* Action Button */}
                   <div className="flex">
-              
-                      <div className="">
-                        <Link href={"/dashboard"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white mr-4">
-                            Dashboard
-                          </button>
-                        </Link>
-                        <Link href={"/register"}>
-                          <button
-                         
-                            className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white"
-                          >
-                            Logout
-                          </button>
-                        </Link>
-                      </div>
-         
-                      <div>
-                        <Link href={"/login"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                            Login
-                          </button>
-                        </Link>
-                      </div>
-             
+                    <div>
+                      <Link href={"/register"}>
+                        <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          Register
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </ul>
               </div>
@@ -85,7 +68,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Navbar;
