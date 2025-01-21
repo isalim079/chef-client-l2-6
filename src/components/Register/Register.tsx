@@ -6,6 +6,7 @@ import logo from "../../assets/logo.png";
 import Image from "next/image";
 import cycling from "../../assets/animation/girlCycling.json";
 import Lottie from "lottie-react";
+import Link from "next/link";
 
 const Register = () => {
   const {
@@ -92,6 +93,13 @@ const Register = () => {
               >
                 Register
               </button>
+              {/* bottom action */}
+              <div className="flex items-center gap-2 mt-2 font-poppins">
+                <p>Already have an account?</p>{" "}
+                <Link href={"/login"} className="font-semibold underline">
+                  Login to your account
+                </Link>
+              </div>
             </div>
           </form>
         </div>
