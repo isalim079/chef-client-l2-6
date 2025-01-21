@@ -1,11 +1,14 @@
 import HomePage from "@/components/Home/Home";
 import Navbar from "@/components/shared/Navbar/Navbar";
+import NoSSR from "@/utils/NoSSR";
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <HomePage />
+      <NoSSR>
+        <Navbar />
+        <HomePage />
+      </NoSSR>
     </div>
   );
 }
