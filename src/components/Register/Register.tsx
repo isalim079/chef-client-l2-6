@@ -12,12 +12,13 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
+import ButtonLoading from "@/utils/ui/ButtonLoading";
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -49,7 +50,7 @@ const Register = () => {
       await axiosPublic
         .post("/register", userData)
         .then((res) => {
-            console.log(res.data);
+          console.log(res.data);
           if (res.data.success) {
             toast.success("User registered successfully", {
               position: "top-center",
@@ -148,19 +149,11 @@ const Register = () => {
                 type="submit"
                 className="bg-dark-green text-white w-full mt-7 py-2 font-poppins rounded-lg"
               >
-               <span className="flex items-center gap-2 justify-center">
-                          <CgSpinnerTwo
-                            className={`${
-                              isLoading ? "block" : "hidden"
-                            } animate-spin text-lg`}
-                          />{" "}
-                          <span className={`${isLoading ? "block" : "hidden"}`}>
-                            Registering...
-                          </span>{" "}
-                          <span className={`${isLoading ? "hidden" : "block"}`}>
-                            Register
-                          </span>
-                        </span>
+                <ButtonLoading
+                  btnName="Register"
+                  isLoading={isLoading}
+                  loadingBtnName="Registering..."
+                />
               </button>
               {/* bottom action */}
               <div className="flex items-center gap-2 mt-2 font-poppins">
