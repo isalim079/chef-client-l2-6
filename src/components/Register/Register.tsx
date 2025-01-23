@@ -11,7 +11,6 @@ import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CgSpinnerTwo } from "react-icons/cg";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;
@@ -50,7 +49,7 @@ const Register = () => {
       await axiosPublic
         .post("/register", userData)
         .then((res) => {
-          console.log(res.data);
+
           if (res.data.success) {
             toast.success("User registered successfully", {
               position: "top-center",

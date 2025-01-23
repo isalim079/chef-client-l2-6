@@ -6,6 +6,11 @@ import Image from "next/image";
 import vegetable from "../../assets/animation/vegetable.json";
 import Lottie from "lottie-react";
 import Link from "next/link";
+import { useState } from "react";
+import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import ButtonLoading from "@/utils/ui/ButtonLoading";
 
 const Login = () => {
   const {
@@ -15,8 +20,32 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const axiosPublic = useAxiosPublic();
+
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    setIsLoading(true);
+
+    const userData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    await axiosPublic.post("/login", userData).then((res) => {
+      if (res.data.success) {
+        setIsLoading(false);
+        toast.success("User Logged in successfully", {
+          position: "top-center",
+        });
+        reset();
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
+    });
   };
 
   return (
@@ -62,8 +91,10 @@ const Login = () => {
               placeholder="Enter your password"
             />
 
-            <div>
-                <Link href={'/recoverPassword'}>Forget Password?</Link>
+            <div className="flex justify-end mt-1">
+              <Link className="underline" href={"/recoverPassword"}>
+                Forget Password?
+              </Link>
             </div>
 
             {/* action button */}
@@ -72,7 +103,11 @@ const Login = () => {
                 type="submit"
                 className="bg-dark-green text-white w-full mt-7 py-2 font-poppins rounded-lg"
               >
-                Login
+                <ButtonLoading
+                  btnName="Login"
+                  isLoading={isLoading}
+                  loadingBtnName="Logging in..."
+                />
               </button>
               {/* bottom action */}
               <div className="flex items-center gap-2 mt-2 font-poppins">
