@@ -3,9 +3,10 @@
 import { createContext, useContext, useState } from "react";
 
 type TUser = {
-    _id: string;
+  _id: string;
   name: string;
   email: string;
+  password?: string;
   image: string;
   role: "admin" | "user";
   address?: string;

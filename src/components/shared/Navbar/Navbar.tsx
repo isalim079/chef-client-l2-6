@@ -5,10 +5,11 @@ import Link from "next/link";
 import { CgMenu } from "react-icons/cg";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/context/AuthContext";
+// import { useUser } from "@/context/UserContext";
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
-  console.log(user);
+  // const { user } = useUser();
+  const { logout, user } = useAuth();
 
   return (
     <div className="overflow-hidden absolute z-30 bg-primary-white/70 w-full">
@@ -44,19 +45,31 @@ const Navbar = () => {
                     <div>
                       {user ? (
                         <div>
+                          <Link href={`/${user.role}-dashboard`}>
+                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                              Dashboard
+                            </button>
+                          </Link>
                           <button
-                            className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white"
+                            className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
                             onClick={() => logout()}
                           >
                             Logout
                           </button>
                         </div>
                       ) : (
-                        <Link href={"/register"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                            Register
-                          </button>
-                        </Link>
+                        <div className="">
+                          <Link href={"/login"}>
+                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                              Login
+                            </button>
+                          </Link>
+                          <Link className="ml-4" href={"/register"}>
+                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                              Register
+                            </button>
+                          </Link>
+                        </div>
                       )}
                     </div>
                   </div>

@@ -41,11 +41,13 @@ const Login = () => {
       if (res.data.success) {
         const token = res.data.token;
         const user = res.data.data;
+        login(user, token);
+
         setIsLoading(false);
         toast.success("User Logged in successfully", {
           position: "top-center",
         });
-        login(user, token);
+
         reset();
         setTimeout(() => {
           router.push("/");
