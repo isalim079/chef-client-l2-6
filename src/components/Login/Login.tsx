@@ -92,8 +92,8 @@ const Login = () => {
             />
 
             <div className="flex justify-end mt-1">
-              <Link className="underline" href={"/recoverPassword"}>
-                Forget Password?
+              <Link className="underline" href={"/forgot-password"}>
+                Forgot Password?
               </Link>
             </div>
 
