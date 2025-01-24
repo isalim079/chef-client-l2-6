@@ -4,8 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { CgMenu } from "react-icons/cg";
 import logo from "@/assets/logo.png";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  console.log(user);
+
   return (
     <div className="overflow-hidden absolute z-30 bg-primary-white/70 w-full">
       <div className="max-w-screen-xl mx-auto">
@@ -38,11 +42,22 @@ const Navbar = () => {
                   {/* Action Button */}
                   <div className="flex">
                     <div>
-                      <Link href={"/register"}>
-                        <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                          Register
-                        </button>
-                      </Link>
+                      {user ? (
+                        <div>
+                          <button
+                            className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white"
+                            onClick={() => logout()}
+                          >
+                            Logout
+                          </button>
+                        </div>
+                      ) : (
+                        <Link href={"/register"}>
+                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                            Register
+                          </button>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </ul>
