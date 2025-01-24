@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import TextField from "@/utils/ui/TextField";
 import { FieldValues, useForm } from "react-hook-form";
@@ -11,6 +12,7 @@ import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
+import { useAuth } from "@/context/AuthContext";
 
 const Login = () => {
   const {
@@ -20,6 +22,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const { login } = useAuth();
   const axiosPublic = useAxiosPublic();
 
   const router = useRouter();
@@ -33,19 +36,26 @@ const Login = () => {
       email: data.email,
       password: data.password,
     };
-
-    await axiosPublic.post("/login", userData).then((res) => {
+    try {
+      const res = await axiosPublic.post("/login", userData);
       if (res.data.success) {
+        const token = res.data.token;
+        const user = res.data.data;
         setIsLoading(false);
         toast.success("User Logged in successfully", {
           position: "top-center",
         });
+        login(user, token);
         reset();
         setTimeout(() => {
           router.push("/");
         }, 1500);
       }
-    });
+    } catch (error: any) {
+      console.log(error);
+      setIsLoading(false);
+      toast.error("Wrong email or password");
+    }
   };
 
   return (
