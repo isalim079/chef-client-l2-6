@@ -57,7 +57,7 @@ const Register = () => {
             reset();
             setIsLoading(false);
             setTimeout(() => {
-              router.push("/");
+              router.push("/login");
             }, 1000);
           }
         })

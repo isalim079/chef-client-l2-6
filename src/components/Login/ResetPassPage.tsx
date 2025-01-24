@@ -3,7 +3,8 @@
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import TextField from "@/utils/ui/TextField";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";

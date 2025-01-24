@@ -8,6 +8,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
+import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
   const {
@@ -19,6 +20,7 @@ const ForgotPassword = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const router = useRouter();
 
   const [allUserEmail, setAllUserEmail] = useState<{ email: string }[]>([]);
 
@@ -29,13 +31,11 @@ const ForgotPassword = () => {
   }, []);
 
   const onSubmit = async (data: FieldValues) => {
-    // setIsLoading(true);
+    setIsLoading(true);
 
     const resetLink = `${window.location.origin}/reset-password/${Math.random()
       .toString(36)
       .substr(2, 10)}?email=${data.email}`;
-
-    console.log(resetLink);
 
     const matchedEmail = await allUserEmail?.find(
       (item) => item?.email === data.email
@@ -56,9 +56,12 @@ const ForgotPassword = () => {
         )
         .then(
           () => {
-            toast.success("Password reset email sent successfully");
+            toast.success("Please check your email to reset password");
             setIsLoading(false);
             reset();
+            setTimeout(() => {
+              router.push("/login");
+            }, 1500);
           },
           (error) => {
             // console.log(error);
@@ -67,6 +70,7 @@ const ForgotPassword = () => {
         );
     } else {
       toast.error("Email not found");
+      setIsLoading(false);
     }
   };
 
