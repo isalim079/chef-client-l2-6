@@ -12,14 +12,14 @@ import { TRecipe } from "./RecipeInterface";
 import { useAuth } from "@/context/AuthContext";
 import { FaStar } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { Rating, RoundedStar } from '@smastrom/react-rating'
-import '@smastrom/react-rating/style.css'
+import { Rating, RoundedStar } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 const myRatingStyles = {
-    itemShapes: RoundedStar,
-    activeFillColor: '#ffb700',
-    inactiveFillColor: '#fbf1a9'
-  }
+  itemShapes: RoundedStar,
+  activeFillColor: "#ffb700",
+  inactiveFillColor: "#fbf1a9",
+};
 
 const RecipeFeed = () => {
   const axiosPublic = useAxiosPublic();
@@ -41,8 +41,6 @@ const RecipeFeed = () => {
     getAllRecipe();
   }, []);
 
- 
-
   const handleRatingSubmit = async (item: any) => {
     // console.log(item);
     if (user) {
@@ -56,6 +54,85 @@ const RecipeFeed = () => {
         .then((res) => {
           if (res.data.success) {
             toast.success("Successfully rated");
+            getAllRecipe();
+          }
+        });
+    }
+  };
+
+  const handleUpvoteSubmit = async (item: any) => {
+    // console.log(item.upvote);
+
+    const findUserUpvote = item.upvote.find(
+      (item: any) => item.email === user?.email
+    );
+
+    if (user) {
+      const upVotesData = {
+        email: user.email,
+        upvote: findUserUpvote ? !findUserUpvote.upvote : true,
+      };
+
+      await axiosPublic
+        .patch(`/allRecipes/${item._id}/upvote`, upVotesData)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(
+              `${
+                upVotesData.upvote === true
+                  ? "Liked the recipe!"
+                  : "Like removed"
+              }`
+            );
+            getAllRecipe();
+          }
+        });
+    }
+  };
+
+  const handleDownvoteSubmit = async (item: any) => {
+    // console.log(item.upvote);
+
+    const findUserDownvote = item.downvote.find(
+      (item: any) => item.email === user?.email
+    );
+
+    if (user) {
+      const downVotesData = {
+        email: user.email,
+        downvote: findUserDownvote ? !findUserDownvote.downvote : true,
+      };
+
+      await axiosPublic
+        .patch(`/allRecipes/${item._id}/downvote`, downVotesData)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(
+              `${
+                downVotesData.downvote === true
+                  ? "Disliked the recipe!"
+                  : "Dislike removed"
+              }`
+            );
+            getAllRecipe();
+          }
+        });
+    }
+  };
+
+  const handleCommentsSubmit = async (id: string, e: any) => {
+    const comments = e.target.comments.value;
+
+    if (user) {
+      const commentsData = {
+        email: user.email,
+        comments: comments,
+      };
+      await axiosPublic
+        .patch(`/allRecipes/${id}/comments`, commentsData)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success("Comments successfully updated");
             getAllRecipe();
           }
         });
@@ -150,7 +227,8 @@ const RecipeFeed = () => {
                                 Rate this post
                               </h3>
                               <Rating
-                                value={rating} onChange={setRating}
+                                value={rating}
+                                onChange={setRating}
                                 className="mt-5"
                                 itemStyles={myRatingStyles}
                               />
@@ -171,32 +249,106 @@ const RecipeFeed = () => {
 
                         {/* Up vote */}
                         <div>
-                          <button className="border border-dark-green p-2 rounded-full">
+                          <button
+                            onClick={() => handleUpvoteSubmit(item)}
+                            className={`border border-dark-green p-2 rounded-full ${
+                              item.upvote.find(
+                                (email) =>
+                                  email.email === user?.email &&
+                                  email.upvote === true
+                              )
+                                ? "bg-dark-green text-primary-white"
+                                : ""
+                            }`}
+                          >
                             <BiLike />
                           </button>
                           <p className="text-base text-center mt-1 font-semibold">
-                            {item?.upvote?.length}
+                            {item.upvote
+                              ? item.upvote.filter(
+                                  (vote) => vote.upvote === true
+                                ).length
+                              : 0}
                           </p>
                         </div>
 
                         {/* Down vote */}
                         <div>
-                          <button className="border border-dark-green p-2 rounded-full">
+                          <button
+                            onClick={() => handleDownvoteSubmit(item)}
+                            className={`border border-dark-green p-2 rounded-full ${
+                              item.downvote.find(
+                                (email) =>
+                                  email.email === user?.email &&
+                                  email.downvote === true
+                              )
+                                ? "bg-dark-green text-primary-white"
+                                : ""
+                            }`}
+                          >
                             <BiDislike />
                           </button>
                           <p className="text-base text-center mt-1 font-semibold">
-                            {item?.downvote?.length}
+                            {item.downvote
+                              ? item.downvote.filter(
+                                  (vote) => vote.downvote === true
+                                ).length
+                              : 0}
                           </p>
                         </div>
 
                         {/* Comments */}
                         <div>
-                          <button className="border border-dark-green p-2 rounded-full">
+                          <button
+                            onClick={() => {
+                              const dialog = document.getElementById(
+                                `${item.email}`
+                              ) as HTMLDialogElement | null;
+                              if (dialog) {
+                                dialog.showModal();
+                              } else {
+                                console.error(
+                                  `Dialog with ID ${item.email} not found`
+                                );
+                              }
+                            }}
+                            className="border border-dark-green p-2 rounded-full"
+                          >
                             <LiaCommentSolid />
                           </button>
                           <p className="text-base text-center mt-1 font-semibold">
                             {item?.comments?.length}
                           </p>
+
+                          {/* Give comments */}
+                          <dialog id={`${item.email}`} className="modal">
+                            <div className="modal-box">
+                              <h3 className="font-bold text-lg">
+                                Comment on this post
+                              </h3>
+
+                              <div className="modal-action">
+                                <form
+                                  onSubmit={(e) =>
+                                    handleCommentsSubmit(item._id, e)
+                                  }
+                                  method="dialog"
+                                  className="w-full"
+                                >
+                                  {/* if there is a button in form, it will close the modal */}
+                                  <textarea
+                                    className="border border-dark-green mt-2 text-sm p-4 w-full"
+                                    name="comments"
+                                    id="comments"
+                                    placeholder="Write your comments here"
+                                  ></textarea>
+                                  <button className="bg-primary-orange px-4 py-2 rounded-md text-sm flex">
+                                    Submit
+                                  </button>
+                                </form>
+                              </div>
+                            </div>
+                          </dialog>
                         </div>
                       </div>
                     </div>
