@@ -19,7 +19,7 @@ const OurCommunity = () => {
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
         <div className="text-dark-green">
-          <h1 className="lg:text-5xl text-2xl font-bold text-center ">
+          <h1 className="lg:text-5xl text-2xl font-bold text-center font-sourGummy">
             What’s Cooking in Our Community?
           </h1>
           <p className="lg:text-xl lg:mt-4 text-center ">
@@ -32,7 +32,7 @@ const OurCommunity = () => {
           {communityData?.map((item, index) => (
             <div
               key={index}
-              className={`grid  grid-cols-8 items-center gap-10 bg-light-green p-8 rounded-md cursor-pointer ${
+              className={`grid  grid-cols-8 items-center gap-10 bg-white p-8 rounded-md cursor-pointer ${
                 isHovered === index &&
                 "shadow-md -translate-y-3 transition-all duration-300 ease-in-out"
               }`}

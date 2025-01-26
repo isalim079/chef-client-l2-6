@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type TUser = {
   _id: string;
@@ -22,12 +22,20 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<TUser | null>(
-    JSON.parse(localStorage.getItem("user") || "null")
-  );
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [user, setUser] = useState<TUser | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const login = (user: TUser, token: string) => {
     setUser(user);

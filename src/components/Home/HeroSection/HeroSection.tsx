@@ -9,7 +9,7 @@ const HeroSection = () => {
         <div className="max-w-screen-xl mx-auto">
           <div className="lg:flex items-center justify-between px-6 lg:px-0 ">
             <div className="flex-1 flex flex-col justify-start">
-              <h1 className="text-2xl lg:text-5xl font-bold text-dark-green text-center lg:text-start">
+              <h1 className="text-2xl lg:text-5xl font-bold text-dark-green text-center lg:text-start font-sourGummy">
                 Welcome to the Recipe Sharing Community
               </h1>
               <p className="text-lg lg:max-w-[75%] mt-3 lg:mt-7 text-dark-green text-justify lg:text-start">

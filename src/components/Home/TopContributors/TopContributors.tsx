@@ -10,7 +10,7 @@ const TopContributors = () => {
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
         <div className="text-primary-white">
-          <h1 className="lg:text-5xl text-2xl font-bold text-center ">
+          <h1 className="lg:text-5xl text-2xl font-bold text-center font-sourGummy">
             Meet Our Star Cooks
           </h1>
           <p className="lg:text-xl lg:mt-4 text-center ">

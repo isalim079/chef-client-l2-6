@@ -20,7 +20,7 @@ const FeaturedRecipe = () => {
     <div className="bg-primary-white font-poppins py-16 lg:py-28 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         <div>
-          <h1 className="lg:text-5xl text-2xl font-bold text-center text-dark-green">
+          <h1 className="lg:text-5xl text-2xl font-bold text-center text-dark-green font-sourGummy">
             Taste the Best – Handpicked Recipes for You
           </h1>
           <p className="lg:text-xl lg:mt-4 text-center text-dark-green">
@@ -32,10 +32,11 @@ const FeaturedRecipe = () => {
           {featuredRecipeData?.map((item, index) => (
             <div
               key={index}
-              className={`grid grid-cols-8 gap-5 items-center bg-light-green p-7 rounded-md shadow-sm cursor-pointer ${
+              className={`grid grid-cols-8 gap-5 items-center bg-primary-white  p-7 rounded-md cursor-pointer ${
                 isHovered === index &&
                 "-translate-y-3 transition-all duration-300 ease-in-out"
               }`}
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >

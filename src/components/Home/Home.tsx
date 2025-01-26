@@ -2,7 +2,7 @@
 
 import FeaturedRecipe from "./FeaturedRecipe/FeaturedRecipe";
 import HeroSection from "./HeroSection/HeroSection";
-import OurCommunity from "./OurCommunity";
+import OurCommunity from "./OurCommunity/OurCommunity";
 import TopContributors from "./TopContributors/TopContributors";
 
 const HomePage = () => {

@@ -8,6 +8,7 @@ interface TextFieldProps {
   classes?: string;
   placeholder?: string;
   inputType: string;
+  isRequired?: boolean;
 }
 
 const TextField = ({
@@ -18,6 +19,8 @@ const TextField = ({
   classes,
   placeholder,
   inputType,
+  isRequired
+
 }: TextFieldProps) => {
   return (
     <div className={`flex flex-col gap-3 ${classes}`}>
@@ -25,11 +28,12 @@ const TextField = ({
         {label}
       </label>
       <input
+  
         name={name}
         type={`${inputType}`}
         placeholder={`${placeholder}`}
         className="p-3 rounded-md border border-black/50"
-        {...register(`${name}`, { required: true })}
+        {...register(`${name}`, { required: isRequired === false ? false : true })}
       />
       {errors[name] && (
         <p className="text-red-600 font-semibold -mt-1">
