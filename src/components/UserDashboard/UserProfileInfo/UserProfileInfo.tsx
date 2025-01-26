@@ -11,22 +11,36 @@ import TextField from "@/utils/ui/TextField";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import toast from "react-hot-toast";
 
+export type TUser = {
+  name: string;
+  email: string;
+  password?: string;
+  image: string;
+  role: "admin" | "user";
+  address?: string;
+};
+
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;
 
 const UserProfileInfo = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const axiosPublic = useAxiosPublic();
 
- const [userList, setUserList] = useState([])
+  const [findUser, setFindUser] = useState<TUser | null>(null);
 
- useEffect(() => {
-    axiosPublic.get(`/api/users`).then((res) => {
-      setUserList(res.data.data);
-    });
-
- }, [])
- console.log(userList);
-
+  useEffect(() => {
+    if (user) {
+      axiosPublic
+        .get(`/api/getMe/${user?.email}`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+        .then((res) => {
+          setFindUser(res.data.data);
+        });
+    }
+  }, [user, token]);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +52,7 @@ const UserProfileInfo = () => {
   } = useForm();
 
   const onSubmit = async (data: FieldValues) => {
-    setIsLoading(true)
+    setIsLoading(true);
     let uploadedImageUrl = user?.image;
 
     const imageFile = { image: data.profileImage[0] };
@@ -51,21 +65,27 @@ const UserProfileInfo = () => {
       uploadedImageUrl = res.data.data.display_url;
     }
     const updatedInfo = {
-      name: data.name ? data.name : user?.name,
-      address: data.address ? data.address : user?.address,
-      image: uploadedImageUrl ? uploadedImageUrl : user?.image,
+      name: data.name ? data.name : findUser?.name,
+      address: data.address ? data.address : findUser?.address,
+      image: uploadedImageUrl ? uploadedImageUrl : findUser?.image,
     };
     try {
-        const res = await axiosPublic.put(`/api/users/${user?.email}`, updatedInfo);
-        if(res.data.success) {
-            reset()
-            setIsLoading(false)
-            toast.success("User profile updated successfully", {
-                position: "top-center",
-            });
-        }
+      const res = await axiosPublic.put(
+        `/api/users/${user?.email}`,
+        updatedInfo
+      );
+      if (res.data.success) {
+        reset();
+        setIsLoading(false);
+        toast.success("User profile updated successfully", {
+          position: "top-center",
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 
@@ -74,10 +94,10 @@ const UserProfileInfo = () => {
       <div className="flex justify-between items-center max-w-[920px] mx-auto bg-primary-white p-16 mt-10">
         {/* Left side */}
         <div className="flex flex-col items-start">
-          {user?.image ? (
+          {findUser?.image ? (
             <Image
               className="rounded-full mb-4"
-              src={user?.image}
+              src={findUser?.image}
               width={100}
               height={100}
               alt="profile picture"
@@ -88,10 +108,10 @@ const UserProfileInfo = () => {
             </div>
           )}
           <h6 className="">
-            <span className="font-bold">Name:</span> {user?.name}
+            <span className="font-bold">Name:</span> {findUser?.name}
           </h6>
           <p className="mt-1">
-            <span className="font-bold">Email:</span> {user?.email}
+            <span className="font-bold">Email:</span> {findUser?.email}
           </p>
         </div>
         {/* Right side */}
@@ -104,7 +124,7 @@ const UserProfileInfo = () => {
               name="name"
               register={register}
               classes=""
-              placeholder={user?.name}
+              placeholder={findUser?.name}
               isRequired={false}
             />
             <TextField
@@ -114,7 +134,7 @@ const UserProfileInfo = () => {
               name="address"
               register={register}
               classes="mt-4"
-              placeholder={user?.address}
+              placeholder={findUser?.address}
               isRequired={false}
             />
 
