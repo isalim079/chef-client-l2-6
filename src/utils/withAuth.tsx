@@ -3,6 +3,7 @@
 "use client"
 
 
+import Loading from "@/components/shared/Loading/Loading";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +21,6 @@ const withAuth = (WrappedComponent: ComponentType<WithAuthProps>) => {
     const [isHydrated, setIsHydrated] = useState(false);
 
     useEffect(() => {
-        // Ensure hydration before checking user
         setIsHydrated(true);
       }, []);
 
@@ -35,9 +35,7 @@ const withAuth = (WrappedComponent: ComponentType<WithAuthProps>) => {
 
       if (!isHydrated || !user) {
         return (
-          <div className="flex justify-center items-center h-screen">
-            <p>Loading...</p> 
-          </div>
+          <Loading />
         );
       }
 
