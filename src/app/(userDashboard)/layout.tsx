@@ -1,3 +1,4 @@
+import UserSidebar from "@/components/UserDashboard/UserSidebar/UserSidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,12 @@ export default function UserDashboardLayout({
 }>) {
   return (
     <div>
-      {children}
+     <div className="grid grid-cols-12">
+          <div className="col-span-2">
+            <UserSidebar />
+          </div>
+          <div className="col-span-10">{children}</div>
+        </div>
     </div>
   );
 }

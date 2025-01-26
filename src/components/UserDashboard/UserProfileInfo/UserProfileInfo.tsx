@@ -10,6 +10,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import TextField from "@/utils/ui/TextField";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export type TUser = {
   name: string;
@@ -91,7 +92,10 @@ const UserProfileInfo = () => {
 
   return (
     <div className="font-poppins">
-      <div className="flex justify-between items-center max-w-[920px] mx-auto bg-primary-white p-16 mt-10">
+      <h1 className="text-center mt-10 text-3xl font-bold font-sourGummy">
+        Welcome to your profile
+      </h1>
+      <div className="flex justify-between items-center max-w-[920px] mx-auto bg-primary-white p-16 mt-10 rounded-lg shadow-md">
         {/* Left side */}
         <div className="flex flex-col items-start">
           {findUser?.image ? (
@@ -113,6 +117,9 @@ const UserProfileInfo = () => {
           <p className="mt-1">
             <span className="font-bold">Email:</span> {findUser?.email}
           </p>
+          <Link className="underline mt-2" href={"/forgot-password"}>
+            Change Password?
+          </Link>
         </div>
         {/* Right side */}
         <div>
