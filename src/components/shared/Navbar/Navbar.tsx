@@ -8,7 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 // import { useUser } from "@/context/UserContext";
 
 const Navbar = () => {
-  // const { user } = useUser();
+
   const { logout, user } = useAuth();
 
   return (
@@ -37,7 +37,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal items-center font-semibold">
                   {/* Navbar menu content here */}
                   <li>
-                    <Link href={"/recipe-feed"}>Recipe Feed</Link>
+                    <Link href={`/recipe-feed`}>Recipe Feed</Link>
                   </li>
 
                   {/* Action Button */}
