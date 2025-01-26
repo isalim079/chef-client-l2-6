@@ -19,6 +19,7 @@ export type TDownVote = {
 }
 
 export type TRecipe = {
+    _id?: string;
     image: string;
     title: string;
     recipe: string; 
