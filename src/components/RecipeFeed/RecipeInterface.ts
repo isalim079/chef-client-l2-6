@@ -1,4 +1,5 @@
 export type TComments = {
+    name: string;
     email: string;
     comments: string;
 }

@@ -125,6 +125,7 @@ const RecipeFeed = () => {
 
     if (user) {
       const commentsData = {
+        name: user.name,
         email: user.email,
         comments: comments,
       };
@@ -326,13 +327,22 @@ const RecipeFeed = () => {
                               <h3 className="font-bold text-lg">
                                 Comment on this post
                               </h3>
-
+                              <div className="text-sm h-[280px] overflow-y-auto">
+                                {item?.comments?.map((comment, index) => (
+                                  <div key={index} className="mt-2">
+                                    <p className="font-semibold">
+                                      {comment.name}
+                                    </p>
+                                    <p>{comment.comments}</p>
+                                  </div>
+                                ))}
+                              </div>
                               <div className="modal-action">
                                 <form
                                   onSubmit={(e) =>
-                                    handleCommentsSubmit(item._id, e)
+                                    handleCommentsSubmit(item?._id as string, e)
                                   }
-                                  method="dialog"
+                                  //   method="dialog"
                                   className="w-full"
                                 >
                                   {/* if there is a button in form, it will close the modal */}
@@ -342,9 +352,28 @@ const RecipeFeed = () => {
                                     id="comments"
                                     placeholder="Write your comments here"
                                   ></textarea>
-                                  <button className="bg-primary-orange px-4 py-2 rounded-md text-sm flex">
-                                    Submit
-                                  </button>
+                                  <div className="flex items-center justify-between mt-3">
+                                    <button
+                                      type="submit"
+                                      className="bg-primary-orange px-4 py-2 rounded-md text-sm flex"
+                                    >
+                                      Submit
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const dialog = document.getElementById(
+                                          `${item.email}`
+                                        ) as HTMLDialogElement | null;
+                                        if (dialog) {
+                                          dialog.close(); // Close the modal
+                                        }
+                                      }}
+                                      className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
+                                    >
+                                      close
+                                    </button>
+                                  </div>
                                 </form>
                               </div>
                             </div>
