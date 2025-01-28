@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Link from "next/link";
+import { TUser } from "../UserDashboard/UserProfileInfo/UserProfileInfo";
 
 const myRatingStyles = {
   itemShapes: RoundedStar,
@@ -24,9 +25,25 @@ const myRatingStyles = {
 
 const RecipeFeed = () => {
   const axiosPublic = useAxiosPublic();
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const [allRecipeData, setAllRecipeData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+   const [findUser, setFindUser] = useState<TUser | null>(null);
+  
+    useEffect(() => {
+      if (user) {
+        axiosPublic
+          .get(`/api/getMe/${user?.email}`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          .then((res) => {
+            setFindUser(res.data.data);
+          });
+      }
+    }, [user, token]);
 
   const [rating, setRating] = useState(0);
 
@@ -142,10 +159,10 @@ const RecipeFeed = () => {
   };
 
   const renderRecipes = () => {
-    if(user?.userType === 'premium') {
+    if(findUser?.userType === 'premium') {
       return allRecipeData;
     }
-    else if (user?.userType === 'free') {
+    else if (findUser?.userType === 'free') {
       return allRecipeData.slice(0, 5)
     }
     return []
@@ -396,7 +413,7 @@ const RecipeFeed = () => {
                 </div>
               ))}
 
-              {user?.userType === 'free' && (<div className="text-center my-10">
+              {findUser?.userType === 'free' && (<div className="text-center my-10">
                   <p className="text-lg font-semibold">
                     Please subscribe to see more recipes.
                   </p>

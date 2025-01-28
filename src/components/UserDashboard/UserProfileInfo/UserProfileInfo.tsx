@@ -12,13 +12,25 @@ import ButtonLoading from "@/utils/ui/ButtonLoading";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
+export type TSubscriptionInfo = {
+  _id: string
+  tnxId: string;
+  purchaseTime: string;
+  expiryTime: string;
+  amount: number
+}
+
 export type TUser = {
+  _id: string;
   name: string;
   email: string;
   password?: string;
   image: string;
   role: "admin" | "user";
   address?: string;
+  userType?: "free" | "premium";
+  totalSpends?: number;
+  subScriptionInfo?: TSubscriptionInfo[]
 };
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;

@@ -63,14 +63,47 @@ const Package1 = () => {
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        // increase limit for shopUser
 
-        axiosPublic
+        const purchaseDate = new Date(); // Current time
+        const purchaseTime = purchaseDate.toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        });
+        const expiryDate = new Date();
+        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+      const expiryTime = expiryDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
+      const subscriptionInfo = {
+        tnxId: paymentIntent.id,
+        purchaseTime: purchaseTime,
+        expiryTime: expiryTime,
+        amount: 20, 
+      };
+
+
+
+       await axiosPublic
           .patch(`/api/users/${user?.email}/userType`, {
             userType: "premium",
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data.success);
+            if(res.data.success) {
+               axiosPublic.patch(`/api/users/${user?.email}/subscriptionInfo`, subscriptionInfo)
+               .then((res) => {
+                console.log(res.data.success);
+               })
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -78,7 +111,7 @@ const Package1 = () => {
 
         toast.success("payment successful. your are subscribed");
 
-        console.log("transaction id", paymentIntent.id);
+        // console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
       }
     }

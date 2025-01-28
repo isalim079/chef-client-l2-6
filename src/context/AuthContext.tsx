@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
 
+export type TSubscriptionInfo = {
+  _id: string;
+  tnxId: string;
+  purchaseTime: string;
+  expiryTime: string;
+  amount: number;
+};
 type TUser = {
   _id: string;
   name: string;
@@ -12,6 +19,7 @@ type TUser = {
   address?: string;
   userType?: "free" | "premium";
   totalSpends?: number;
+  subScriptionInfo?: TSubscriptionInfo[];
 };
 
 type AuthContextType = {
