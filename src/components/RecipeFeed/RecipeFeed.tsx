@@ -14,6 +14,7 @@ import { FaStar } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import Link from "next/link";
 
 const myRatingStyles = {
   itemShapes: RoundedStar,
@@ -140,6 +141,16 @@ const RecipeFeed = () => {
     }
   };
 
+  const renderRecipes = () => {
+    if(user?.userType === 'premium') {
+      return allRecipeData;
+    }
+    else if (user?.userType === 'free') {
+      return allRecipeData.slice(0, 5)
+    }
+    return []
+  }
+
   return (
     <div className="pt-28">
       <div className="max-w-screen-xl mx-auto font-poppins">
@@ -154,7 +165,7 @@ const RecipeFeed = () => {
             <Loading />
           ) : (
             <div className="mt-20">
-              {allRecipeData?.map((item: TRecipe, index: number) => (
+              {renderRecipes()?.map((item: TRecipe, index: number) => (
                 <div key={index} className="mb-20 ">
                   <div>
                     {/* title section */}
@@ -384,6 +395,18 @@ const RecipeFeed = () => {
                   </div>
                 </div>
               ))}
+
+              {user?.userType === 'free' && (<div className="text-center my-10">
+                  <p className="text-lg font-semibold">
+                    Please subscribe to see more recipes.
+                  </p>
+                  <Link href={'/subscription'}><button
+                    className="bg-gray-800 px-6 py-3 rounded-md text-white mt-4"
+                    
+                  >
+                    Subscribe Now
+                  </button></Link>
+                </div>)}
             </div>
           )}
         </div>

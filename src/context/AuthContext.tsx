@@ -10,6 +10,8 @@ type TUser = {
   image: string;
   role: "admin" | "user";
   address?: string;
+  userType?: "free" | "premium";
+  totalSpends?: number;
 };
 
 type AuthContextType = {
