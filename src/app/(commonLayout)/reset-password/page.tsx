@@ -1,7 +1,7 @@
 const ResetPasswordPage = () => {
     return (
         <div>
-            
+            Resetting Password
         </div>
     );
 };

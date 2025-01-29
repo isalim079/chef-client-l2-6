@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import { useAuth } from "@/context/AuthContext";
+// import dynamic from "next/dynamic";
 
 const Login = () => {
   const {
@@ -137,3 +138,4 @@ const Login = () => {
 };
 
 export default Login;
+// export default dynamic(() => Promise.resolve(Login), { ssr: false });

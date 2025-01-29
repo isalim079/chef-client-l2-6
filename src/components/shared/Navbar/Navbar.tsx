@@ -8,7 +8,6 @@ import { useAuth } from "@/context/AuthContext";
 // import { useUser } from "@/context/UserContext";
 
 const Navbar = () => {
-
   const { logout, user } = useAuth();
 
   return (
@@ -34,10 +33,10 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className="hidden flex-none lg:block">
-                <ul className="menu menu-horizontal items-center font-semibold">
+                <ul className="flex gap-4 items-center font-semibold">
                   {/* Navbar menu content here */}
                   <li>
-                    <Link href={`/recipe-feed`}>Recipe Feed</Link>
+                    <Link className="font-semibold" href={`/recipe-feed`}>Recipe Feed</Link>
                   </li>
 
                   {/* Action Button */}

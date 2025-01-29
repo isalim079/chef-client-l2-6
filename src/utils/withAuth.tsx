@@ -1,7 +1,5 @@
+"use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-"use client"
-
 
 import Loading from "@/components/shared/Loading/Loading";
 import { useAuth } from "@/context/AuthContext";
@@ -21,23 +19,21 @@ const withAuth = (WrappedComponent: ComponentType<WithAuthProps>) => {
     const [isHydrated, setIsHydrated] = useState(false);
 
     useEffect(() => {
-        setIsHydrated(true);
-      }, []);
+      setIsHydrated(true);
+    }, []);
 
-      useEffect(() => {
-        if (isHydrated && !user) {
-          toast.error("You need to login first");
-          setTimeout(() => {
-            router.push("/login");
-          }, 1500);
-        }
-      }, [user, router, isHydrated]);
-
-      if (!isHydrated || !user) {
-        return (
-          <Loading />
-        );
+    useEffect(() => {
+      if (isHydrated && !user) {
+        toast.error("You need to login first");
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       }
+    }, [user, router, isHydrated]);
+
+    if (!isHydrated || !user) {
+      return <Loading />;
+    }
 
     return <WrappedComponent {...props} />;
   };

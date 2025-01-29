@@ -1,5 +1,6 @@
 "use client";
 
+// import dynamic from "next/dynamic";
 import FeaturedRecipe from "./FeaturedRecipe/FeaturedRecipe";
 import HeroSection from "./HeroSection/HeroSection";
 import OurCommunity from "./OurCommunity/OurCommunity";
@@ -17,3 +18,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// export default dynamic(() => Promise.resolve(HomePage), {ssr: false})

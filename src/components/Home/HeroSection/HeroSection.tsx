@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { BsArrowRightCircle } from "react-icons/bs";
 
@@ -40,4 +41,5 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+// export default HeroSection;
+export default dynamic(() => Promise.resolve(HeroSection), { ssr: false });

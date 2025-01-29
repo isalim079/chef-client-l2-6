@@ -167,6 +167,8 @@ const RecipeFeed = () => {
     }
     return []
   }
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [activeCommentsModal, setActiveCommentsModal] = useState<string | null>(null);
 
   return (
     <div className="pt-28">
@@ -223,18 +225,19 @@ const RecipeFeed = () => {
                         <div>
                           <button
                             className="border border-primary-orange p-2 rounded-full"
-                            onClick={() => {
-                              const dialog = document.getElementById(
-                                `${item._id}`
-                              ) as HTMLDialogElement | null;
-                              if (dialog) {
-                                dialog.showModal();
-                              } else {
-                                console.error(
-                                  `Dialog with ID ${item._id} not found`
-                                );
-                              }
-                            }}
+                            // onClick={() => {
+                            //   const dialog = document.getElementById(
+                            //     `${item._id}`
+                            //   ) as HTMLDialogElement | null;
+                            //   if (dialog) {
+                            //     dialog.showModal();
+                            //   } else {
+                            //     console.error(
+                            //       `Dialog with ID ${item._id} not found`
+                            //     );
+                            //   }
+                            // }}
+                            onClick={() => setActiveModal(item._id as string)}
                           >
                             <FaStar className="text-primary-orange" />
                           </button>
@@ -250,7 +253,10 @@ const RecipeFeed = () => {
                           </p>
 
                           {/* give rating */}
-                          <dialog id={`${item?._id}`} className="modal">
+                          <dialog 
+                          // id={`${item?._id}`} 
+                          open={activeModal === item._id}
+                          className="modal">
                             <div className="modal-box">
                               <h3 className="font-bold text-lg">
                                 Rate this post
@@ -265,7 +271,11 @@ const RecipeFeed = () => {
                                 <form method="dialog">
                                   {/* if there is a button in form, it will close the modal */}
                                   <button
-                                    onClick={() => handleRatingSubmit(item)}
+                                    // onClick={() => handleRatingSubmit(item)}
+                                    onClick={() => {
+                                      handleRatingSubmit(item);
+                                      setActiveModal(null);
+                                    }}
                                     className="bg-primary-orange px-4 py-2 rounded-md text-sm"
                                   >
                                     Submit
@@ -329,18 +339,19 @@ const RecipeFeed = () => {
                         {/* Comments */}
                         <div>
                           <button
-                            onClick={() => {
-                              const dialog = document.getElementById(
-                                `${item.email}`
-                              ) as HTMLDialogElement | null;
-                              if (dialog) {
-                                dialog.showModal();
-                              } else {
-                                console.error(
-                                  `Dialog with ID ${item.email} not found`
-                                );
-                              }
-                            }}
+                            // onClick={() => {
+                            //   const dialog = document.getElementById(
+                            //     `${item.email}`
+                            //   ) as HTMLDialogElement | null;
+                            //   if (dialog) {
+                            //     dialog.showModal();
+                            //   } else {
+                            //     console.error(
+                            //       `Dialog with ID ${item.email} not found`
+                            //     );
+                            //   }
+                            // }}
+                            onClick={() => setActiveCommentsModal(item.email)}
                             className="border border-dark-green p-2 rounded-full"
                           >
                             <LiaCommentSolid />
@@ -350,7 +361,10 @@ const RecipeFeed = () => {
                           </p>
 
                           {/* Give comments */}
-                          <dialog id={`${item.email}`} className="modal">
+                          <dialog 
+                          // id={`${item.email}`} 
+                          open={activeCommentsModal === item.email}
+                          className="modal">
                             <div className="modal-box">
                               <h3 className="font-bold text-lg">
                                 Comment on this post
@@ -389,14 +403,15 @@ const RecipeFeed = () => {
                                     </button>
                                     <button
                                       type="button"
-                                      onClick={() => {
-                                        const dialog = document.getElementById(
-                                          `${item.email}`
-                                        ) as HTMLDialogElement | null;
-                                        if (dialog) {
-                                          dialog.close(); // Close the modal
-                                        }
-                                      }}
+                                      // onClick={() => {
+                                      //   const dialog = document.getElementById(
+                                      //     `${item.email}`
+                                      //   ) as HTMLDialogElement | null;
+                                      //   if (dialog) {
+                                      //     dialog.close(); // Close the modal
+                                      //   }
+                                      // }}
+                                      onClick={() => setActiveCommentsModal(null)}
                                       className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
                                     >
                                       close
