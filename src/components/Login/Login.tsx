@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TextField from "@/utils/ui/TextField";
 import { FieldValues, useForm } from "react-hook-form";
 import logo from "../../assets/logo.png";
@@ -13,7 +13,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import { useAuth } from "@/context/AuthContext";
-// import dynamic from "next/dynamic";
 
 const Login = () => {
   const {
@@ -138,4 +137,3 @@ const Login = () => {
 };
 
 export default Login;
-// export default dynamic(() => Promise.resolve(Login), { ssr: false });

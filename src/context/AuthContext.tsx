@@ -34,8 +34,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<TUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false); //? new edit
 
   useEffect(() => {
+    setIsClient(true); //? new edit
+
+   if(typeof window !== 'undefined') {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
 
@@ -45,21 +49,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (storedToken) {
       setToken(storedToken);
     }
+   }
   }, []);
 
   const login = (user: TUser, token: string) => {
     setUser(user);
     setToken(token);
-    localStorage.setItem("user", JSON.stringify(user));
+    if(typeof window !== 'undefined') {
+      localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
+    }
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("user");
+    if(typeof window !== 'undefined') {
+      localStorage.removeItem("user");
     localStorage.removeItem("token");
+    }
   };
+
+  if (!isClient) return null; //? new edit
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout }}>
