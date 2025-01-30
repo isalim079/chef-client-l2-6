@@ -13,12 +13,12 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 
 export type TSubscriptionInfo = {
-  _id: string
+  _id: string;
   tnxId: string;
   purchaseTime: string;
   expiryTime: string;
-  amount: number
-}
+  amount: number;
+};
 
 export type TUser = {
   _id: string;
@@ -30,7 +30,7 @@ export type TUser = {
   address?: string;
   userType?: "free" | "premium";
   totalSpends?: number;
-  subScriptionInfo?: TSubscriptionInfo[]
+  subScriptionInfo?: TSubscriptionInfo[];
 };
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;
@@ -85,7 +85,7 @@ const UserProfileInfo = () => {
     try {
       const res = await axiosPublic.put(
         `/api/users/${user?.email}`,
-        updatedInfo
+        updatedInfo,
       );
       if (res.data.success) {
         reset();

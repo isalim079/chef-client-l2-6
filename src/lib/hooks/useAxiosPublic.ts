@@ -8,8 +8,7 @@ import axios from "axios";
 const useAxiosPublic = () => {
   const instance = useMemo(() => {
     return axios.create({
-      baseURL:
-      "http://localhost:5000",
+      baseURL: "http://localhost:5000",
     });
   }, []);
 

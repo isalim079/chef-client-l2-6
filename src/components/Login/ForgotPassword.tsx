@@ -38,7 +38,7 @@ const ForgotPassword = () => {
       .substr(2, 10)}?email=${data.email}`;
 
     const matchedEmail = await allUserEmail?.find(
-      (item) => item?.email === data.email
+      (item) => item?.email === data.email,
     );
 
     const formData = {
@@ -52,7 +52,7 @@ const ForgotPassword = () => {
           `${process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID}`, // service id
           `${process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID}`, // template id
           formData,
-          `${process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY}` // public key
+          `${process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY}`, // public key
         )
         .then(
           () => {
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
           (error) => {
             // console.log(error);
             console.log("FAILED...", error.text);
-          }
+          },
         );
     } else {
       toast.error("Email not found");

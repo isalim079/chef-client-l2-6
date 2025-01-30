@@ -39,34 +39,34 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setIsClient(true); //? new edit
 
-   if(typeof window !== 'undefined') {
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage.getItem("token");
 
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+      if (storedToken) {
+        setToken(storedToken);
+      }
     }
-    if (storedToken) {
-      setToken(storedToken);
-    }
-   }
   }, []);
 
   const login = (user: TUser, token: string) => {
     setUser(user);
     setToken(token);
-    if(typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
     }
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    if(typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.removeItem("user");
-    localStorage.removeItem("token");
+      localStorage.removeItem("token");
     }
   };
 

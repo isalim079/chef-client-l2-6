@@ -36,45 +36,49 @@ const Navbar = () => {
                 <ul className="flex gap-4 items-center font-semibold">
                   {/* Navbar menu content here */}
                   <li>
-                    <Link className="font-semibold" href={`/recipe-feed`}>Recipe Feed</Link>
+                    <Link className="font-semibold" href={`/recipe-feed`}>
+                      Recipe Feed
+                    </Link>
                   </li>
                   <li>
-                    <Link className="font-semibold" href={`/create-recipe`}>Create Recipe</Link>
+                    <Link className="font-semibold" href={`/create-recipe`}>
+                      Create Recipe
+                    </Link>
                   </li>
                 </ul>
-                 {/* Action Button */}
-                 <div className="flex">
-                    <div>
-                      {user ? (
-                        <div>
-                          <Link href={`/${user.role}-dashboard`}>
-                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                              Dashboard
-                            </button>
-                          </Link>
-                          <button
-                            className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
-                            onClick={() => logout()}
-                          >
-                            Logout
+                {/* Action Button */}
+                <div className="flex">
+                  <div>
+                    {user ? (
+                      <div>
+                        <Link href={`/${user.role}-dashboard`}>
+                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                            Dashboard
                           </button>
-                        </div>
-                      ) : (
-                        <div className="">
-                          <Link href={"/login"}>
-                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                              Login
-                            </button>
-                          </Link>
-                          <Link className="ml-4" href={"/register"}>
-                            <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                              Register
-                            </button>
-                          </Link>
-                        </div>
-                      )}
-                    </div>
+                        </Link>
+                        <button
+                          className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
+                          onClick={() => logout()}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="">
+                        <Link href={"/login"}>
+                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                            Login
+                          </button>
+                        </Link>
+                        <Link className="ml-4" href={"/register"}>
+                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                            Register
+                          </button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
+                </div>
               </div>
             </div>
           </div>

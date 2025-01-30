@@ -6,7 +6,7 @@ import Package1 from "./Package/Package1";
 import { FaCaretRight } from "react-icons/fa";
 
 const stripePromise = loadStripe(
-  `${process.env.NEXT_PUBLIC_Payment_Gateway_PK}`
+  `${process.env.NEXT_PUBLIC_Payment_Gateway_PK}`,
 );
 
 const Subscription = () => {

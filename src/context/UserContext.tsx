@@ -1,11 +1,16 @@
-
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
 
 type TUser = {
-    _id: string;
+  _id: string;
   name: string;
   email: string;
   image: string;

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useAuth } from "@/context/AuthContext";
@@ -20,7 +20,7 @@ const Package1 = () => {
 
   useEffect(() => {
     axiosPublic.post("/create-payment-intent", { price: 20 }).then((res) => {
-    //   console.log(res.data.clientSecret);
+      //   console.log(res.data.clientSecret);
       setClientSecret(res.data.clientSecret);
     });
   }, []);
@@ -63,7 +63,6 @@ const Package1 = () => {
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-
         const purchaseDate = new Date(); // Current time
         const purchaseTime = purchaseDate.toLocaleString("en-US", {
           year: "numeric",
@@ -75,34 +74,36 @@ const Package1 = () => {
         });
         const expiryDate = new Date();
         expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-      const expiryTime = expiryDate.toLocaleString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      });
-      const subscriptionInfo = {
-        tnxId: paymentIntent.id,
-        purchaseTime: purchaseTime,
-        expiryTime: expiryTime,
-        amount: 20, 
-      };
+        const expiryTime = expiryDate.toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        });
+        const subscriptionInfo = {
+          tnxId: paymentIntent.id,
+          purchaseTime: purchaseTime,
+          expiryTime: expiryTime,
+          amount: 20,
+        };
 
-
-
-       await axiosPublic
+        await axiosPublic
           .patch(`/api/users/${user?.email}/userType`, {
             userType: "premium",
           })
           .then((res) => {
             // console.log(res.data.success);
-            if(res.data.success) {
-               axiosPublic.patch(`/api/users/${user?.email}/subscriptionInfo`, subscriptionInfo)
-               .then((res) => {
-                console.log(res.data.success);
-               })
+            if (res.data.success) {
+              axiosPublic
+                .patch(
+                  `/api/users/${user?.email}/subscriptionInfo`,
+                  subscriptionInfo,
+                )
+                .then((res) => {
+                  console.log(res.data.success);
+                });
             }
           })
           .catch((error) => {
@@ -145,7 +146,9 @@ const Package1 = () => {
         </button>
         <p className="text-red-600">{error}</p>
         {transactionId && (
-          <p className="text-green-600 mt-3">Your transaction id: {transactionId}</p>
+          <p className="text-green-600 mt-3">
+            Your transaction id: {transactionId}
+          </p>
         )}
       </form>
     </div>

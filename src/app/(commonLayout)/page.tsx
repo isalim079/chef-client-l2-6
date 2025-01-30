@@ -4,9 +4,9 @@ import NoSSR from "@/utils/NoSSR";
 export default function Home() {
   return (
     <div>
-     <NoSSR>
-       <HomePage />
-     </NoSSR>
+      <NoSSR>
+        <HomePage />
+      </NoSSR>
     </div>
   );
 }

@@ -1,13 +1,7 @@
-
 "use client";
 
-
 const UserDashboard = () => {
-  return (
-   <div>
-    user dash
-   </div>
-  );
+  return <div>user dash</div>;
 };
 
 export default UserDashboard;

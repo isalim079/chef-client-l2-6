@@ -84,7 +84,7 @@ const RecipeFeed = () => {
     // console.log(item.upvote);
 
     const findUserUpvote = item.upvote.find(
-      (item: any) => item.email === user?.email
+      (item: any) => item.email === user?.email,
     );
 
     if (user) {
@@ -98,10 +98,11 @@ const RecipeFeed = () => {
         .then((res) => {
           if (res.data.success) {
             toast.success(
-              `${upVotesData.upvote === true
-                ? "Liked the recipe!"
-                : "Like removed"
-              }`
+              `${
+                upVotesData.upvote === true
+                  ? "Liked the recipe!"
+                  : "Like removed"
+              }`,
             );
             getAllRecipe();
           }
@@ -113,7 +114,7 @@ const RecipeFeed = () => {
     // console.log(item.upvote);
 
     const findUserDownvote = item.downvote.find(
-      (item: any) => item.email === user?.email
+      (item: any) => item.email === user?.email,
     );
 
     if (user) {
@@ -127,10 +128,11 @@ const RecipeFeed = () => {
         .then((res) => {
           if (res.data.success) {
             toast.success(
-              `${downVotesData.downvote === true
-                ? "Disliked the recipe!"
-                : "Dislike removed"
-              }`
+              `${
+                downVotesData.downvote === true
+                  ? "Disliked the recipe!"
+                  : "Dislike removed"
+              }`,
             );
             getAllRecipe();
           }
@@ -160,56 +162,66 @@ const RecipeFeed = () => {
   };
 
   const renderRecipes = () => {
-    if (findUser?.userType === 'premium') {
+    if (findUser?.userType === "premium") {
       return allRecipeData;
+    } else if (findUser?.userType === "free") {
+      return allRecipeData.slice(0, 5);
     }
-    else if (findUser?.userType === 'free') {
-      return allRecipeData.slice(0, 5)
-    }
-    return []
-  }
+    return [];
+  };
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [activeCommentsModal, setActiveCommentsModal] = useState<string | null>(null);
-  const [activeUpdateCommentsModal, setActiveUpdateCommentsModal] = useState<string | null>(null);
+  const [activeCommentsModal, setActiveCommentsModal] = useState<string | null>(
+    null,
+  );
+  const [activeUpdateCommentsModal, setActiveUpdateCommentsModal] = useState<
+    string | null
+  >(null);
 
-
-  const handleCommentUpdate = async (recipeId: string, e: any, commentId: string) => {
+  const handleCommentUpdate = async (
+    recipeId: string,
+    e: any,
+    commentId: string,
+  ) => {
     e.preventDefault();
     // console.log(recipeId, 'recipeId');
     // console.log(commentId, 'commentId');
     // console.log(e.target.comments.value, 'data');
 
     const updatedComment = {
-      updatedComment: e.target.comments.value
+      updatedComment: e.target.comments.value,
     };
 
     try {
-      const res = await axiosPublic.put(`/recipes/${recipeId}/comments/${commentId}`, updatedComment)
+      const res = await axiosPublic.put(
+        `/recipes/${recipeId}/comments/${commentId}`,
+        updatedComment,
+      );
 
       if (res.data.success) {
-        toast.success('Comment updated successfully')
-        setActiveUpdateCommentsModal(null)
-        getAllRecipe()
+        toast.success("Comment updated successfully");
+        setActiveUpdateCommentsModal(null);
+        getAllRecipe();
       }
     } catch (error) {
-      toast.error('Error updating comment')
+      toast.error("Error updating comment");
       console.log(error);
     }
-
-  }
+  };
 
   const handleDeleteComment = async (recipeId: string, commentId: string) => {
     try {
-      const res = await axiosPublic.delete(`/recipes/${recipeId}/comments/${commentId}`)
+      const res = await axiosPublic.delete(
+        `/recipes/${recipeId}/comments/${commentId}`,
+      );
       if (res.data.success) {
-        toast.success('Comment deleted successfully')
-        getAllRecipe()
+        toast.success("Comment deleted successfully");
+        getAllRecipe();
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error deleting comment')
+      toast.error("Error deleting comment");
     }
-  }
+  };
 
   return (
     <div className="pt-28">
@@ -231,7 +243,8 @@ const RecipeFeed = () => {
                     {/* title section */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <Image
+                       <div>
+                       <Image
                           className="rounded-full"
                           width={60}
                           height={60}
@@ -241,6 +254,11 @@ const RecipeFeed = () => {
                         <p className="mt-2 font-semibold text-xl">
                           {item?.name}
                         </p>
+                       </div>
+                       <div>
+                        <button>Follow</button>
+                        <button>Unfollow</button>
+                       </div>
                       </div>
                       <div>
                         <h3 className=" text-dark-green text-lg">
@@ -248,7 +266,11 @@ const RecipeFeed = () => {
                           {item?.title}
                         </h3>
                         <div className="flex justify-end mt-1">
-                          <Link href={`/recipe-feed/${item?._id}`}><button className="font-sourGummy text-xl underline flex items-center gap-1"><BiInfoCircle /> Details</button></Link>
+                          <Link href={`/recipe-feed/${item?._id}`}>
+                            <button className="font-sourGummy text-xl underline flex items-center gap-1">
+                              <BiInfoCircle /> Details
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -288,19 +310,20 @@ const RecipeFeed = () => {
                           <p className="text-base text-center mt-1 font-semibold">
                             {item.ratingsData && item.ratingsData.length > 0
                               ? (
-                                item.ratingsData.reduce(
-                                  (sum, rating) => sum + rating.ratings,
-                                  0
-                                ) / item.ratingsData.length
-                              ).toFixed(1)
+                                  item.ratingsData.reduce(
+                                    (sum, rating) => sum + rating.ratings,
+                                    0,
+                                  ) / item.ratingsData.length
+                                ).toFixed(1)
                               : 0}
                           </p>
 
                           {/* give rating */}
                           <dialog
-                            // id={`${item?._id}`} 
+                            // id={`${item?._id}`}
                             open={activeModal === item._id}
-                            className="modal">
+                            className="modal"
+                          >
                             <div className="modal-box">
                               <h3 className="font-bold text-lg">
                                 Rate this post
@@ -334,22 +357,23 @@ const RecipeFeed = () => {
                         <div>
                           <button
                             onClick={() => handleUpvoteSubmit(item)}
-                            className={`border border-dark-green p-2 rounded-full ${item.upvote.find(
-                              (email) =>
-                                email.email === user?.email &&
-                                email.upvote === true
-                            )
-                              ? "bg-dark-green text-primary-white"
-                              : ""
-                              }`}
+                            className={`border border-dark-green p-2 rounded-full ${
+                              item.upvote.find(
+                                (email) =>
+                                  email.email === user?.email &&
+                                  email.upvote === true,
+                              )
+                                ? "bg-dark-green text-primary-white"
+                                : ""
+                            }`}
                           >
                             <BiLike />
                           </button>
                           <p className="text-base text-center mt-1 font-semibold">
                             {item.upvote
                               ? item.upvote.filter(
-                                (vote) => vote.upvote === true
-                              ).length
+                                  (vote) => vote.upvote === true,
+                                ).length
                               : 0}
                           </p>
                         </div>
@@ -358,22 +382,23 @@ const RecipeFeed = () => {
                         <div>
                           <button
                             onClick={() => handleDownvoteSubmit(item)}
-                            className={`border border-dark-green p-2 rounded-full ${item.downvote.find(
-                              (email) =>
-                                email.email === user?.email &&
-                                email.downvote === true
-                            )
-                              ? "bg-dark-green text-primary-white"
-                              : ""
-                              }`}
+                            className={`border border-dark-green p-2 rounded-full ${
+                              item.downvote.find(
+                                (email) =>
+                                  email.email === user?.email &&
+                                  email.downvote === true,
+                              )
+                                ? "bg-dark-green text-primary-white"
+                                : ""
+                            }`}
                           >
                             <BiDislike />
                           </button>
                           <p className="text-base text-center mt-1 font-semibold">
                             {item.downvote
                               ? item.downvote.filter(
-                                (vote) => vote.downvote === true
-                              ).length
+                                  (vote) => vote.downvote === true,
+                                ).length
                               : 0}
                           </p>
                         </div>
@@ -381,10 +406,8 @@ const RecipeFeed = () => {
                         {/* Comments */}
                         <div>
                           <button
-
                             onClick={() => {
                               setActiveCommentsModal(item.email);
-
                             }}
                             className="border border-dark-green p-2 rounded-full"
                           >
@@ -396,16 +419,20 @@ const RecipeFeed = () => {
 
                           {/* Give comments */}
                           <dialog
-                            // id={`${item.email}`} 
+                            // id={`${item.email}`}
                             open={activeCommentsModal === item.email}
-                            className="modal">
+                            className="modal"
+                          >
                             <div className="modal-box">
                               <h3 className="font-bold text-lg">
                                 Comment on this post
                               </h3>
                               <div className="text-sm h-[280px] overflow-y-auto">
                                 {item?.comments?.map((comment, index) => (
-                                  <div key={index} className="mt-2 flex items-center justify-between" >
+                                  <div
+                                    key={index}
+                                    className="mt-2 flex items-center justify-between"
+                                  >
                                     <div>
                                       <p className="font-semibold">
                                         {comment.name}
@@ -413,64 +440,91 @@ const RecipeFeed = () => {
                                       <p>{comment.comments}</p>
                                     </div>
                                     <div>
-                                      {findUser?.email === comment.email && <div className="pr-5 text-xl flex items-center gap-4">
-                                        {/* update comment button */}
-                                        <button onClick={() => {
-                                          setActiveUpdateCommentsModal(comment._id);
+                                      {findUser?.email === comment.email && (
+                                        <div className="pr-5 text-xl flex items-center gap-4">
+                                          {/* update comment button */}
+                                          <button
+                                            onClick={() => {
+                                              setActiveUpdateCommentsModal(
+                                                comment._id,
+                                              );
+                                            }}
+                                            className=" p-1 rounded-md shadow-md bg-white"
+                                          >
+                                            <MdEditNote className="text-2xl" />
+                                          </button>
+                                          {/* delete comment button */}
+                                          <button
+                                            className=" p-1 rounded-md shadow-md bg-white"
+                                            onClick={() =>
+                                              handleDeleteComment(
+                                                item._id as string,
+                                                comment._id,
+                                              )
+                                            }
+                                          >
+                                            <RiDeleteBin4Fill className="text-red-600" />
+                                          </button>
 
-                                        }} className=" p-1 rounded-md shadow-md bg-white" ><MdEditNote className="text-2xl" /></button>
-                                        {/* delete comment button */}
-                                        <button className=" p-1 rounded-md shadow-md bg-white" onClick={() => handleDeleteComment(item._id as string, comment._id)}><RiDeleteBin4Fill className="text-red-600" /></button>
+                                          {/* update comments form */}
 
-                                        {/* update comments form */}
+                                          <dialog
+                                            // id={`${item.email}`}
+                                            open={
+                                              activeUpdateCommentsModal ===
+                                              comment._id
+                                            }
+                                            className="modal"
+                                          >
+                                            <div className="modal-box">
+                                              <h3 className="font-bold text-lg">
+                                                Update your comment
+                                              </h3>
 
-                                        <dialog
-                                          // id={`${item.email}`} 
-                                          open={activeUpdateCommentsModal === comment._id}
-                                          className="modal">
-                                          <div className="modal-box">
-                                            <h3 className="font-bold text-lg">
-                                              Update your comment
-                                            </h3>
-
-                                            <div className="modal-action">
-                                              <form
-                                                onSubmit={(e) =>
-                                                  handleCommentUpdate(item?._id as string, e, comment._id)
-                                                }
-                                                //   method="dialog"
-                                                className="w-full"
-                                              >
-                                                {/* if there is a button in form, it will close the modal */}
-                                                <textarea
-                                                  className="border border-dark-green mt-2 text-sm p-4 w-full"
-                                                  name="comments"
-                                                  id="comments"
-                                                  placeholder="Update comments here"
-                                                ></textarea>
-                                                <div className="flex items-center justify-between mt-3">
-                                                  <button
-                                                    type="submit"
-                                                    className="bg-primary-orange px-4 py-2 rounded-md text-sm flex"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                  <button
-                                                    type="button"
-
-                                                    onClick={() => setActiveUpdateCommentsModal(null)}
-                                                    className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
-                                                  >
-                                                    close
-                                                  </button>
-                                                </div>
-                                              </form>
+                                              <div className="modal-action">
+                                                <form
+                                                  onSubmit={(e) =>
+                                                    handleCommentUpdate(
+                                                      item?._id as string,
+                                                      e,
+                                                      comment._id,
+                                                    )
+                                                  }
+                                                  //   method="dialog"
+                                                  className="w-full"
+                                                >
+                                                  {/* if there is a button in form, it will close the modal */}
+                                                  <textarea
+                                                    className="border border-dark-green mt-2 text-sm p-4 w-full"
+                                                    name="comments"
+                                                    id="comments"
+                                                    placeholder="Update comments here"
+                                                  ></textarea>
+                                                  <div className="flex items-center justify-between mt-3">
+                                                    <button
+                                                      type="submit"
+                                                      className="bg-primary-orange px-4 py-2 rounded-md text-sm flex"
+                                                    >
+                                                      Submit
+                                                    </button>
+                                                    <button
+                                                      type="button"
+                                                      onClick={() =>
+                                                        setActiveUpdateCommentsModal(
+                                                          null,
+                                                        )
+                                                      }
+                                                      className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
+                                                    >
+                                                      close
+                                                    </button>
+                                                  </div>
+                                                </form>
+                                              </div>
                                             </div>
-                                          </div>
-                                        </dialog>
-
-
-                                      </div>}
+                                          </dialog>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 ))}
@@ -507,7 +561,9 @@ const RecipeFeed = () => {
                                       //     dialog.close(); // Close the modal
                                       //   }
                                       // }}
-                                      onClick={() => setActiveCommentsModal(null)}
+                                      onClick={() =>
+                                        setActiveCommentsModal(null)
+                                      }
                                       className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
                                     >
                                       close
@@ -524,20 +580,18 @@ const RecipeFeed = () => {
                 </div>
               ))}
 
-              {findUser?.userType === 'free' && (<div className="text-center my-10">
-                <p className="text-lg font-semibold">
-                  Please subscribe to see more recipes.
-                </p>
-                <Link href={'/subscription'}><button
-                  className="bg-gray-800 px-6 py-3 rounded-md text-white mt-4"
-
-                >
-
-
-                  
-                  Subscribe Now
-                </button></Link>
-              </div>)}
+              {findUser?.userType === "free" && (
+                <div className="text-center my-10">
+                  <p className="text-lg font-semibold">
+                    Please subscribe to see more recipes.
+                  </p>
+                  <Link href={"/subscription"}>
+                    <button className="bg-gray-800 px-6 py-3 rounded-md text-white mt-4">
+                      Subscribe Now
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>

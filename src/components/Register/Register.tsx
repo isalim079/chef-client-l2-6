@@ -49,7 +49,6 @@ const Register = () => {
       await axiosPublic
         .post("/register", userData)
         .then((res) => {
-
           if (res.data.success) {
             toast.success("User registered successfully", {
               position: "top-center",
