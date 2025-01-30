@@ -16,6 +16,8 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Link from "next/link";
 import { TUser } from "../UserDashboard/UserProfileInfo/UserProfileInfo";
+import { MdEditNote } from "react-icons/md";
+import { RiDeleteBin4Fill } from "react-icons/ri";
 
 const myRatingStyles = {
   itemShapes: RoundedStar,
@@ -139,6 +141,7 @@ const RecipeFeed = () => {
   };
 
   const handleCommentsSubmit = async (id: string, e: any) => {
+    e.preventDefault();
     const comments = e.target.comments.value;
 
     if (user) {
@@ -169,6 +172,33 @@ const RecipeFeed = () => {
   }
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [activeCommentsModal, setActiveCommentsModal] = useState<string | null>(null);
+  const [activeUpdateCommentsModal, setActiveUpdateCommentsModal] = useState<string | null>(null);
+
+
+  const handleCommentUpdate = async (recipeId: string, e: any, commentId: string ) => {
+    e.preventDefault();
+    console.log(recipeId, 'recipeId');
+    console.log(commentId, 'commentId');
+    console.log(e.target.comments.value, 'data');
+
+    const updatedComment = {
+      updatedComment: e.target.comments.value
+    };
+
+    try {
+      const res = await axiosPublic.put(`/recipes/${recipeId}/comments/${commentId}`, updatedComment)
+   
+      if (res.data.success) {
+        toast.success('Comment updated successfully')
+       setActiveUpdateCommentsModal(null)
+       getAllRecipe()
+      }
+    } catch (error) {
+      toast.error('Error updating comment')
+      console.log(error);
+    }
+
+  }
 
   return (
     <div className="pt-28">
@@ -339,19 +369,11 @@ const RecipeFeed = () => {
                         {/* Comments */}
                         <div>
                           <button
-                            // onClick={() => {
-                            //   const dialog = document.getElementById(
-                            //     `${item.email}`
-                            //   ) as HTMLDialogElement | null;
-                            //   if (dialog) {
-                            //     dialog.showModal();
-                            //   } else {
-                            //     console.error(
-                            //       `Dialog with ID ${item.email} not found`
-                            //     );
-                            //   }
-                            // }}
-                            onClick={() => setActiveCommentsModal(item.email)}
+                          
+                            onClick={() => {
+                              setActiveCommentsModal(item.email);
+                             
+                            }}
                             className="border border-dark-green p-2 rounded-full"
                           >
                             <LiaCommentSolid />
@@ -371,11 +393,71 @@ const RecipeFeed = () => {
                               </h3>
                               <div className="text-sm h-[280px] overflow-y-auto">
                                 {item?.comments?.map((comment, index) => (
-                                  <div key={index} className="mt-2">
+                                  <div key={index} className="mt-2 flex items-center justify-between" >
+                                    <div>
                                     <p className="font-semibold">
                                       {comment.name}
                                     </p>
                                     <p>{comment.comments}</p>
+                                    </div>
+                                    <div>
+                                      {findUser?.email === comment.email && <div className="pr-5 text-xl flex items-center gap-4">
+                                        <button  onClick={() => {
+                              setActiveUpdateCommentsModal(comment._id);
+                             
+                            }} className=" p-1 rounded-md shadow-md bg-white" ><MdEditNote className="text-2xl" /></button>
+                                        <button className=" p-1 rounded-md shadow-md bg-white"><RiDeleteBin4Fill className="text-red-600" /></button>
+
+                                        {/* update comments */}
+
+                                        <dialog 
+                          // id={`${item.email}`} 
+                          open={activeUpdateCommentsModal === comment._id}
+                          className="modal">
+                            <div className="modal-box">
+                              <h3 className="font-bold text-lg">
+                                Update your comment
+                              </h3>
+                       
+                              <div className="modal-action">
+                                <form
+                                  onSubmit={(e) =>
+                                    handleCommentUpdate(item?._id as string, e, comment._id)
+                                  }
+                                  //   method="dialog"
+                                  className="w-full"
+                                >
+                                  {/* if there is a button in form, it will close the modal */}
+                                  <textarea
+                                    className="border border-dark-green mt-2 text-sm p-4 w-full"
+                                    name="comments"
+                                    id="comments"
+                                    placeholder="Update comments here"
+                                  ></textarea>
+                                  <div className="flex items-center justify-between mt-3">
+                                    <button
+                                      type="submit"
+                                      className="bg-primary-orange px-4 py-2 rounded-md text-sm flex"
+                                    >
+                                      Submit
+                                    </button>
+                                    <button
+                                      type="button"
+                                    
+                                      onClick={() => setActiveUpdateCommentsModal(null)}
+                                      className="bg-red-600 text-white px-4 py-2 rounded-md text-sm flex"
+                                    >
+                                      close
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </dialog>
+
+
+                                        </div>}
+                                    </div>
                                   </div>
                                 ))}
                               </div>
