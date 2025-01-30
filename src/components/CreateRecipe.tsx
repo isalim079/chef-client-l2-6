@@ -2,6 +2,7 @@
 'use client'
 import { useAuth } from "@/context/AuthContext";
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
+import withAuth from "@/utils/withAuth";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import axios from "axios";
@@ -41,8 +42,6 @@ const CreateRecipe = () => {
     const imageFile = data.image[0];
     const formData = new FormData();
     formData.append("image", imageFile);
-
-    
 
     try {
       const res = await axios.post(image_hosting_api, formData);
@@ -137,4 +136,4 @@ const CreateRecipe = () => {
     );
 };
 
-export default CreateRecipe;
+export default withAuth(CreateRecipe);
