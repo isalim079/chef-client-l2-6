@@ -177,9 +177,9 @@ const RecipeFeed = () => {
 
   const handleCommentUpdate = async (recipeId: string, e: any, commentId: string ) => {
     e.preventDefault();
-    console.log(recipeId, 'recipeId');
-    console.log(commentId, 'commentId');
-    console.log(e.target.comments.value, 'data');
+    // console.log(recipeId, 'recipeId');
+    // console.log(commentId, 'commentId');
+    // console.log(e.target.comments.value, 'data');
 
     const updatedComment = {
       updatedComment: e.target.comments.value
@@ -198,6 +198,19 @@ const RecipeFeed = () => {
       console.log(error);
     }
 
+  }
+
+  const handleDeleteComment = async (recipeId: string, commentId: string) => {
+    try {
+      const res = await axiosPublic.delete(`/recipes/${recipeId}/comments/${commentId}`)
+      if(res.data.success) {
+        toast.success('Comment deleted successfully')
+        getAllRecipe()
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Error deleting comment')
+    }
   }
 
   return (
@@ -402,13 +415,15 @@ const RecipeFeed = () => {
                                     </div>
                                     <div>
                                       {findUser?.email === comment.email && <div className="pr-5 text-xl flex items-center gap-4">
+                                        {/* update comment button */}
                                         <button  onClick={() => {
                               setActiveUpdateCommentsModal(comment._id);
                              
                             }} className=" p-1 rounded-md shadow-md bg-white" ><MdEditNote className="text-2xl" /></button>
-                                        <button className=" p-1 rounded-md shadow-md bg-white"><RiDeleteBin4Fill className="text-red-600" /></button>
+                            {/* delete comment button */}
+                                        <button className=" p-1 rounded-md shadow-md bg-white" onClick={() => handleDeleteComment(item._id as string, comment._id)}><RiDeleteBin4Fill className="text-red-600" /></button>
 
-                                        {/* update comments */}
+                                        {/* update comments form */}
 
                                         <dialog 
                           // id={`${item.email}`} 
