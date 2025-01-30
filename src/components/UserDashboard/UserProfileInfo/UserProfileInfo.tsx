@@ -20,6 +20,13 @@ export type TSubscriptionInfo = {
   amount: number;
 };
 
+export type TFollowerInfo = {
+  following: boolean;
+  name: string;
+  email: string;
+  image: string;
+}
+
 export type TUser = {
   _id: string;
   name: string;
@@ -31,6 +38,7 @@ export type TUser = {
   userType?: "free" | "premium";
   totalSpends?: number;
   subScriptionInfo?: TSubscriptionInfo[];
+  followers?: TFollowerInfo[];
 };
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_BB_API_KEY}`;
