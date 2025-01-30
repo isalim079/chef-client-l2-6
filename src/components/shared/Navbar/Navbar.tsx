@@ -32,15 +32,18 @@ const Navbar = () => {
                   <Image className="w-14" src={logo} alt="logo" />
                 </Link>
               </div>
-              <div className="hidden flex-none lg:block">
+              <div className="hidden lg:flex lg:w-[57%] justify-between flex-none">
                 <ul className="flex gap-4 items-center font-semibold">
                   {/* Navbar menu content here */}
                   <li>
                     <Link className="font-semibold" href={`/recipe-feed`}>Recipe Feed</Link>
                   </li>
-
-                  {/* Action Button */}
-                  <div className="flex">
+                  <li>
+                    <Link className="font-semibold" href={`/create-recipe`}>Create Recipe</Link>
+                  </li>
+                </ul>
+                 {/* Action Button */}
+                 <div className="flex">
                     <div>
                       {user ? (
                         <div>
@@ -72,7 +75,6 @@ const Navbar = () => {
                       )}
                     </div>
                   </div>
-                </ul>
               </div>
             </div>
           </div>
