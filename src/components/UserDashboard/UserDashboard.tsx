@@ -3,7 +3,6 @@
 
 import { useAuth } from "@/context/AuthContext";
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
-import withAuth from "@/utils/withAuth";
 import { useEffect, useState } from "react";
 
 const UserDashboard = () => {
@@ -78,35 +77,31 @@ const UserDashboard = () => {
 
       {/* subscription table */}
       <div className="overflow-x-auto">
-        <h1 className="text-center text-2xl font-sourGummy my-10 font-bold text-dark-green underline">
-          Subscription Details
-        </h1>
-        <table className="table table-zebra">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>TnxID</th>
-              <th>Purchase Time</th>
-              <th>Expiry Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {user?.subScriptionInfo &&
-              user?.subScriptionInfo?.map((item, index) => (
-                <tr key={index + 1}>
-                  <th>{index + 1}</th>
-                  <td>{item.tnxId}</td>
-                  <td>{item.purchaseTime}</td>
-                  <td>{item.expiryTime}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+        <h1 className="text-center text-2xl font-sourGummy my-10 font-bold text-dark-green underline">Subscription Details</h1>
+          <table className="table table-zebra">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>TnxID</th>
+                <th>Purchase Time</th>
+                <th>Expiry Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+             {user?.subScriptionInfo && user?.subScriptionInfo?.map((item, index) => ( <tr key={index + 1}>
+                <th>{index+1}</th>
+                <td>{item.tnxId}</td>
+                <td>{item.purchaseTime}</td>
+                <td>{item.expiryTime}</td>
+              </tr>))}
+             
+            </tbody>
+          </table>
+        </div>
     </div>
   );
 };
 
-export default withAuth(UserDashboard);
+export default UserDashboard;

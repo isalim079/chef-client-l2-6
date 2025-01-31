@@ -1,5 +1,11 @@
+import AdminDashboard from "@/components/AdminDashboard/AdminDashboard";
+
 const AdminDashboardPage = () => {
-  return <div>AdminDashboardPage Component</div>;
+  return (
+    <div>
+      <AdminDashboard />
+    </div>
+  );
 };
 
 export default AdminDashboardPage;
