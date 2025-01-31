@@ -281,13 +281,13 @@ const RecipeFeed = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            <div className="mt-20">
+            <div className="mt-20 px-6 lg:px-0">
               {renderRecipes()?.map((item: TRecipe, index: number) => (
                 <div key={index} className="mb-20 ">
                   <div>
                     {/* title section */}
-                    <div className="flex items-center justify-between">
-                      <div className="">
+                    <div className="flex lg:flex-row flex-col justify-center items-center lg:justify-between">
+                      <div className=" w-full lg:w-fit">
                         <div>
                           <Image
                             className="rounded-full"
@@ -321,7 +321,7 @@ const RecipeFeed = () => {
                           </button>
                         </div>
                       </div>
-                      <div>
+                      <div className="mt-2">
                         <h3 className=" text-dark-green text-lg">
                           <span className="font-bold mr-3">Recipe Name:</span>{" "}
                           {item?.title}
