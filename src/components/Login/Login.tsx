@@ -38,6 +38,8 @@ const Login = () => {
     };
     try {
       const res = await axiosPublic.post("/login", userData);
+
+      // console.log(res.data);
       if (res.data.success) {
         const token = res.data.token;
         const user = res.data.data;
