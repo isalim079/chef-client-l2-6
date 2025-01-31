@@ -4,7 +4,13 @@ import Image from "next/image";
 import logo from "../../../assets/logoW.png";
 import Link from "next/link";
 import { HiHome, HiUser, HiUserGroup } from "react-icons/hi";
+import { useAuth } from "@/context/AuthContext";
+import { BiLogOut } from "react-icons/bi";
+import { RiUserFollowFill } from "react-icons/ri";
+import withAuth from "@/utils/withAuth";
 const UserSidebar = () => {
+  const { logout } = useAuth();
+
   return (
     <div className="">
       <div className=" fixed max-w-[16%] w-full">
@@ -33,6 +39,18 @@ const UserSidebar = () => {
             >
               <HiUserGroup className="text-lg" /> Followers
             </Link>
+            <Link
+              className="p-2 flex items-center gap-2"
+              href={"/subscription"}
+            >
+              <RiUserFollowFill className="text-lg" /> Subscribe
+            </Link>
+            <button
+              onClick={() => logout()}
+              className="p-2 flex items-center gap-2"
+            >
+              <BiLogOut className="text-lg" /> Logout
+            </button>
           </div>
         </div>
       </div>
@@ -40,4 +58,4 @@ const UserSidebar = () => {
   );
 };
 
-export default UserSidebar;
+export default withAuth(UserSidebar);
