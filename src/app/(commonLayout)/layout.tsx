@@ -1,4 +1,5 @@
 import Navbar from "@/components/shared/Navbar/Navbar";
+import Footer from "@/components/shared/Footer/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function CommonLayout({
     <div>
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }
