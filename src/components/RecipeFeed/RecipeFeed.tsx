@@ -18,6 +18,7 @@ import Link from "next/link";
 import { TUser } from "../UserDashboard/UserProfileInfo/UserProfileInfo";
 import { MdEditNote } from "react-icons/md";
 import { RiDeleteBin4Fill } from "react-icons/ri";
+import { useRouter } from "next/navigation";
 
 const myRatingStyles = {
   itemShapes: RoundedStar,
@@ -30,6 +31,8 @@ const RecipeFeed = () => {
   const { user, token } = useAuth();
   const [allRecipeData, setAllRecipeData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
+  const router = useRouter()
 
   const [findUser, setFindUser] = useState<TUser | null>(null);
 
@@ -224,17 +227,19 @@ const RecipeFeed = () => {
   };
 
   const handleFollow = async (userEmail: string) => {
-
     const followerData = {
       following: true,
       name: findUser?.name,
       email: user?.email,
-      image: findUser?.image
-    }
+      image: findUser?.image,
+    };
 
     try {
-      const res = await axiosPublic.patch(`api/users/${userEmail}/followers`, followerData);
-      if(res.data.success) {
+      const res = await axiosPublic.patch(
+        `api/users/${userEmail}/followers`,
+        followerData,
+      );
+      if (res.data.success) {
         toast.success("You followed this chef now!");
         getAllRecipe();
       }
@@ -244,19 +249,24 @@ const RecipeFeed = () => {
     }
   };
 
-  const handleUnFollow = async(userEmail: string, followerEmail: string) => {
+  const handleUnFollow = async (userEmail: string, followerEmail: string) => {
     try {
-      const res = await axiosPublic.delete(`/api/users/${userEmail}/followers/${followerEmail}`);
-      if(res.data.success) {
+      const res = await axiosPublic.delete(
+        `/api/users/${userEmail}/followers/${followerEmail}`,
+      );
+      if (res.data.success) {
         toast.success("Unfollowed this chef now!");
         getAllRecipe();
       }
     } catch (error) {
       console.log(error);
-      toast.error("You are not following this chef now!")
+      toast.error("You are not following this chef now!");
     }
-  }
+  };
 
+  const handleDetailsNavigate = async (id: string) => {
+    router.push(`/recipe-feed/${id}`)
+  }
 
   return (
     <div className="pt-28">
@@ -296,13 +306,18 @@ const RecipeFeed = () => {
                             onClick={() => handleFollow(item?.email as string)}
                             className="px-3 py-1 rounded-2xl border border-dark-green text-sm font-semibold hover:shadow-md hover:bg-dark-green hover:text-white transition-all duration-200 ease-in-out hover:scale-[94%]"
                           >
-                        Follow
+                            Follow
                           </button>
                           <button
-                            onClick={() => handleUnFollow(item?.email as string, user?.email as string)}
+                            onClick={() =>
+                              handleUnFollow(
+                                item?.email as string,
+                                user?.email as string,
+                              )
+                            }
                             className="px-3 py-1 rounded-2xl border border-dark-green text-sm font-semibold hover:shadow-md hover:bg-dark-green hover:text-white transition-all duration-200 ease-in-out hover:scale-[94%]"
                           >
-                        Unfollow
+                            Unfollow
                           </button>
                         </div>
                       </div>
@@ -312,11 +327,11 @@ const RecipeFeed = () => {
                           {item?.title}
                         </h3>
                         <div className="flex justify-end mt-1">
-                          <Link href={`/recipe-feed/${item?._id}`}>
-                            <button className="font-sourGummy text-xl underline flex items-center gap-1">
+                          {/* <Link href={`/recipe-feed/${item?._id}`}> */}
+                            <button onClick={() => handleDetailsNavigate(item._id as string)} className="font-sourGummy text-xl underline flex items-center gap-1">
                               <BiInfoCircle /> Details
                             </button>
-                          </Link>
+                          {/* </Link> */}
                         </div>
                       </div>
                     </div>

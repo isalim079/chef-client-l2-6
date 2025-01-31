@@ -36,15 +36,21 @@ const Navbar = () => {
                 <ul className="flex gap-4 items-center font-semibold">
                   {/* Navbar menu content here */}
                   <li>
+                    <Link className="font-semibold" href={`/create-recipe`}>
+                      Create Recipe
+                    </Link>
+                  </li>
+                  <li>
                     <Link className="font-semibold" href={`/recipe-feed`}>
                       Recipe Feed
                     </Link>
                   </li>
                   <li>
-                    <Link className="font-semibold" href={`/create-recipe`}>
-                      Create Recipe
+                    <Link className="font-semibold" href={`/about-us`}>
+                      About Us
                     </Link>
                   </li>
+                 
                 </ul>
                 {/* Action Button */}
                 <div className="flex">

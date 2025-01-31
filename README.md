@@ -5,6 +5,12 @@ pass: 123456
 <br> 
 <br>
 
+### User Pass
+user: mraju2440@gmail.com <br>
+pass: 123456
+<br> 
+<br>
+
 ### Live link
 Live link: https://chef-client-one.vercel.app <br>
 Server link: https://recipe-sharing-community-server-dun.vercel.app

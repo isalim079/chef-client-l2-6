@@ -4,9 +4,10 @@
 import { useAuth } from "@/context/AuthContext";
 import useAxiosPublic from "@/lib/hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
+import { TUser } from "./UserProfileInfo/UserProfileInfo";
 
 const UserDashboard = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const axiosPublic = useAxiosPublic();
 
   const [myRecipe, setMyRecipe] = useState([]);
@@ -17,7 +18,21 @@ const UserDashboard = () => {
     });
   }, []);
 
-  console.log(user?.subScriptionInfo);
+    const [findUser, setFindUser] = useState<TUser | null>(null);
+  
+    useEffect(() => {
+      if (user) {
+        axiosPublic
+          .get(`/api/getMe/${user?.email}`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          .then((res) => {
+            setFindUser(res.data.data);
+          });
+      }
+    }, [user, token]);
 
   return (
     <div className="font-poppins  p-10 ">
@@ -90,7 +105,7 @@ const UserDashboard = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-             {user?.subScriptionInfo && user?.subScriptionInfo?.map((item, index) => ( <tr key={index + 1}>
+             {findUser?.subScriptionInfo && findUser?.subScriptionInfo?.map((item, index) => ( <tr key={index + 1}>
                 <th>{index+1}</th>
                 <td>{item.tnxId}</td>
                 <td>{item.purchaseTime}</td>
