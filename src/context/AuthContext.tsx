@@ -9,6 +9,13 @@ export type TSubscriptionInfo = {
   expiryTime: string;
   amount: number;
 };
+
+export type TFollowerInfo = {
+  following: boolean;
+  name: string;
+  email: string;
+  image: string;
+}
 type TUser = {
   _id: string;
   name: string;
@@ -20,6 +27,7 @@ type TUser = {
   userType?: "free" | "premium";
   totalSpends?: number;
   subScriptionInfo?: TSubscriptionInfo[];
+  followers?: TFollowerInfo[];
 };
 
 type AuthContextType = {
