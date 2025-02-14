@@ -19,6 +19,7 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -60,6 +61,16 @@ const Login = () => {
       setIsLoading(false);
       toast.error("Wrong email or password");
     }
+  };
+
+  const fillAdminCredentials = () => {
+    setValue("email", "mraju2440@gmail.com"); 
+    setValue("password", "123456"); 
+  };
+
+  const fillUserCredentials = () => {
+    setValue("email", "e@mail.com"); 
+    setValue("password", "123456"); 
   };
 
   return (
@@ -105,7 +116,11 @@ const Login = () => {
               placeholder="Enter your password"
             />
 
-            <div className="flex justify-end mt-1">
+            <div className="flex justify-between items-center mt-1">
+              <div>
+              <button onClick={fillAdminCredentials} className="underline">Admin</button>
+              <button onClick={fillUserCredentials} className="underline ml-2">User</button>
+              </div>
               <Link className="underline" href={"/forgot-password"}>
                 Forgot Password?
               </Link>

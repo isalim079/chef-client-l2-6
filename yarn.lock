@@ -2502,6 +2502,11 @@ react-dom@^18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
+react-fast-marquee@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/react-fast-marquee/-/react-fast-marquee-1.6.5.tgz#98929ae93eef087a607a71e9d45ab76bba97dc16"
+  integrity sha512-swDnPqrT2XISAih0o74zQVE2wQJFMvkx+9VZXYYNSLb/CUcAzU9pNj637Ar2+hyRw6b4tP6xh4GQZip2ZCpQpg==
+
 react-hook-form@^7.54.2:
   version "7.54.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.54.2.tgz#8c26ed54c71628dff57ccd3c074b1dd377cfb211"
@@ -2908,6 +2913,11 @@ sweetalert2@^11.15.10:
   version "11.15.10"
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.15.10.tgz#315ed4d0933bb1b6fbd7d0daf3d160bd3cc78b64"
   integrity sha512-Sjiwcd5mWiz8X0JFkHsso2EPVQHrLCjVv+xR6Ry2LKf4KY6kSi4U5pM0Tgmn1c7SMfkyDqPal2NWqwj6vck8bw==
+
+tailwindcss-motion@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-motion/-/tailwindcss-motion-1.1.0.tgz#fc93b70d7e5949fd1d342004626e56c70c1fc0cc"
+  integrity sha512-0lK6rA4+367ffJdi1TtB72GlMCxJi2TP/xRiHc6An5pZSlU6WfIHhSvLxpcGilGZfBrOqc2q4woH1DEP/lCNbQ==
 
 tailwindcss@3.4.17:
   version "3.4.17"

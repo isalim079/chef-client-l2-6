@@ -1,4 +1,5 @@
 import daisyui from "daisyui";
+import tailwindcssMotion from 'tailwindcss-motion'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
       fontFamily: {
         poppins: "'Poppins', system-ui",
         sourGummy: "'Sour Gummy', serif",
+        cherrySwash: "'Cherry Swash', cursive",
       },
       colors: {
         background: "var(--background)",
@@ -30,5 +32,5 @@ module.exports = {
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, tailwindcssMotion],
 };

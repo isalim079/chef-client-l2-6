@@ -1,12 +1,12 @@
 ## Chef 
 ### Admin User Pass
-admin: nibirhasan@gmail.com <br>
+user: mraju2440@gmail.com <br>
 pass: 123456
 <br> 
 <br>
 
 ### User Pass
-user: mraju2440@gmail.com <br>
+user: e@mail.com <br>
 pass: 123456
 <br> 
 <br>

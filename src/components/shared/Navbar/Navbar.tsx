@@ -3,15 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CgMenu } from "react-icons/cg";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logoW.png";
 import { useAuth } from "@/context/AuthContext";
+import { usePathname } from "next/navigation";
 // import { useUser } from "@/context/UserContext";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
 
+  const pathname = usePathname()
+
   return (
-    <div className="overflow-hidden absolute z-30 bg-primary-white/70 w-full">
+    <div className={`overflow-hidden absolute ${pathname === '/' ? 'bg-black/50' : 'bg-dark-green'} z-30 w-full`}>
       <div className="max-w-screen-xl mx-auto">
         <div className="drawer">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -32,8 +35,8 @@ const Navbar = () => {
                   <Image className="w-14" src={logo} alt="logo" />
                 </Link>
               </div>
-              <div className="hidden lg:flex lg:w-[57%] justify-between flex-none">
-                <ul className="flex gap-4 items-center font-semibold">
+              <div className="hidden lg:flex lg:w-[64%] justify-between flex-none">
+                <ul className="flex gap-6 items-center font-semibold text-white text-lg">
                   {/* Navbar menu content here */}
                   <li>
                     <Link className="font-semibold" href={`/create-recipe`}>
@@ -63,12 +66,12 @@ const Navbar = () => {
                     {user ? (
                       <div>
                         <Link href={`/${user.role}-dashboard`}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          <button className="px-4 py-2 rounded-md text-white border border-white font-semibold">
                             Dashboard
                           </button>
                         </Link>
                         <button
-                          className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
+                          className="px-4 py-2 ml-4 rounded-md text-white border border-white font-semibold"
                           onClick={() => logout()}
                         >
                           Logout
@@ -77,12 +80,12 @@ const Navbar = () => {
                     ) : (
                       <div className="">
                         <Link href={"/login"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          <button className="px-4 py-2 rounded-md text-white border border-white font-semibold">
                             Login
                           </button>
                         </Link>
                         <Link className="ml-4" href={"/register"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          <button className="px-4 py-2 rounded-md text-white border border-white font-semibold">
                             Register
                           </button>
                         </Link>
