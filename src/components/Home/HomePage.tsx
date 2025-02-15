@@ -4,7 +4,9 @@
 import FeaturedRecipe from "./FeaturedRecipe/FeaturedRecipe";
 import HeroSection from "./HeroSection/HeroSection";
 import OurCommunity from "./OurCommunity/OurCommunity";
+import RecipeFeedFav from "./RecipeFeedFav/RecipeFeedFav";
 import TopContributors from "./TopContributors/TopContributors";
+
 
 const HomePage = () => {
   return (
@@ -13,6 +15,7 @@ const HomePage = () => {
       <FeaturedRecipe />
       <TopContributors />
       <OurCommunity />
+      <RecipeFeedFav />
     </div>
   );
 };

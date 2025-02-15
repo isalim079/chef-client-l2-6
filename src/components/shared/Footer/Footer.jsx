@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <div>
       <div>
-        <footer className="footer footer-center bg-dark-green font-poppins text-primary-white p-10 pt-16">
+        <footer className="footer footer-center bg-gray-800 font-poppins text-white p-10 pt-16">
           <aside>
-            <div className="bg-primary-white px-4 py-2 rounded-md">
+            <div className="bg-white px-4 py-2 rounded-md">
               <Image
                 className=""
                 src={logo}

@@ -20,10 +20,10 @@ const FeaturedRecipe = () => {
     <div className=" font-poppins py-16 lg:py-28 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         <div>
-          <h1 className="lg:text-5xl text-2xl font-bold text-center text-dark-green font-cherrySwash">
+          <h1 className="lg:text-5xl text-2xl font-bold text-center text-gray-800 font-cherrySwash">
             Taste the Best – Handpicked Recipes for You
           </h1>
-          <p className="lg:text-xl lg:mt-4 text-center text-dark-green">
+          <p className="lg:text-xl lg:mt-4 text-center text-gray-800">
             Explore trending and highly-rated recipes from our vibrant cooking
             community.
           </p>
@@ -41,10 +41,10 @@ const FeaturedRecipe = () => {
               onMouseLeave={handleMouseLeave}
             >
               <div className="lg:col-span-6 col-span-8">
-                <h1 className="text-dark-green font-bold font-cherrySwash lg:text-xl mb-4">
+                <h1 className="text-gray-800 font-bold font-cherrySwash lg:text-xl mb-4">
                   {item.name}
                 </h1>
-                <p className=" text-dark-green">{item.description}</p>
+                <p className=" text-gray-800">{item.description}</p>
                 <Lottie
                   className="w-14 mt-4 hidden lg:block"
                   animationData={anim}

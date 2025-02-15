@@ -3,6 +3,7 @@
 import { communityData } from "@/utils/SectionData";
 import Lottie from "lottie-react";
 import { useState } from "react";
+import Marquee from "react-fast-marquee";
 
 const OurCommunity = () => {
   const [isHovered, setIsHovered] = useState<number | null>(null);
@@ -15,11 +16,11 @@ const OurCommunity = () => {
   };
 
   return (
-    <div className="bg-primary-white font-poppins py-16 lg:py-28 px-6 lg:px-0">
+    <div className=" font-poppins py-16 lg:py-28 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
-        <div className="text-dark-green">
-          <h1 className="lg:text-5xl text-2xl font-bold text-center font-sourGummy">
+        <div className="text-gray-800">
+          <h1 className="lg:text-5xl text-2xl font-bold text-center font-cherrySwash">
             What’s Cooking in Our Community?
           </h1>
           <p className="lg:text-xl lg:mt-4 text-center ">
@@ -28,43 +29,36 @@ const OurCommunity = () => {
           </p>
         </div>
 
-        <div className="mt-16 space-y-12">
+        <Marquee className="mt-16 " autoFill>
           {communityData?.map((item, index) => (
             <div
               key={index}
-              className={`grid  grid-cols-8 items-center gap-10 bg-white p-8 rounded-md cursor-pointer ${
+              className={` bg-gray-800 p-8 max-w-[720px] h-[380px] flex flex-col justify-between items-center rounded-lg cursor-pointer mr-10 ${
                 isHovered === index &&
-                "shadow-md -translate-y-3 transition-all duration-300 ease-in-out"
+                ""
               }`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div
-                className={`lg:col-span-6 col-span-8 ${
-                  item.id % 2 === 0 ? "lg:order-2" : "lg:order-1"
-                }`}
-              >
-                <p className="text-xl lg:text-2xl text-dark-green font-bold mb-4">
-                  {item.title}
-                </p>
-                <p className="lg:text-lg">{item.description}</p>
-              </div>
-              <div
-                className={`lg:col-span-2 col-span-8 mx-auto  ${
-                  item.id % 2 === 0 ? "lg:order-1" : "lg:order-2"
-                }`}
-              >
+               <div className={` mx-auto  `}>
                 <Lottie
-                  className={`w-52  ${
+                  className={`w-52 border-2 border-primary-orange p-2 rounded-lg shadow-[4px_4px_8px_0px_#facc15] ${
                     isHovered === index &&
-                    "shadow-md p-3 rounded-lg bg-primary-white transition-all duration-300 ease-in-out"
+                    ""
                   }`}
                   animationData={item?.image}
                 />
               </div>
+              <div className={`text-white mt-7 text-center`}>
+                <p className="text-xl lg:text-2xl text-primary-orange font-bold mb-4 font-cherrySwash">
+                  {item.title}
+                </p>
+                <p className="">{item.description}</p>
+              </div>
+             
             </div>
           ))}
-        </div>
+        </Marquee>
       </div>
     </div>
   );
