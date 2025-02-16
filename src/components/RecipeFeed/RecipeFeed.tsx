@@ -32,7 +32,7 @@ const RecipeFeed = () => {
   const [allRecipeData, setAllRecipeData] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const [findUser, setFindUser] = useState<TUser | null>(null);
 
@@ -265,23 +265,23 @@ const RecipeFeed = () => {
   };
 
   const handleDetailsNavigate = async (id: string) => {
-    router.push(`/recipe-feed/${id}`)
-  }
+    router.push(`/recipe-feed/${id}`);
+  };
 
   return (
-    <div className="pt-28">
+    <div className="">
       <div className="max-w-screen-xl mx-auto font-poppins">
-        {/* Title section */}
+        {/* Title section
         <div>
-          <h1 className="text-center text-4xl font-bold uppercase text-dark-green font-sourGummy">
+          <h1 className="text-center text-4xl font-bold uppercase text-gray-800 ">
             Welcome to your recipe feed
           </h1>
-        </div>
+        </div> */}
         <div>
           {isLoading ? (
             <Loading />
           ) : (
-            <div className="mt-20 px-6 lg:px-0">
+            <div className=" px-6 lg:px-0">
               {renderRecipes()?.map((item: TRecipe, index: number) => (
                 <div key={index} className="mb-20 ">
                   <div>
@@ -328,9 +328,14 @@ const RecipeFeed = () => {
                         </h3>
                         <div className="flex justify-end mt-1">
                           {/* <Link href={`/recipe-feed/${item?._id}`}> */}
-                            <button onClick={() => handleDetailsNavigate(item._id as string)} className="font-sourGummy text-xl underline flex items-center gap-1">
-                              <BiInfoCircle /> Details
-                            </button>
+                          <button
+                            onClick={() =>
+                              handleDetailsNavigate(item._id as string)
+                            }
+                            className="font-sourGummy text-xl underline flex items-center gap-1"
+                          >
+                            <BiInfoCircle /> Details
+                          </button>
                           {/* </Link> */}
                         </div>
                       </div>
@@ -346,7 +351,7 @@ const RecipeFeed = () => {
                     </div>
 
                     {/* Micro elements */}
-                    <div>
+                    <div className="mt-7">
                       <div className="text-2xl gap-10 flex justify-end">
                         {/* Rating */}
                         <div>

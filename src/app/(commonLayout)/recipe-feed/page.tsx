@@ -1,9 +1,10 @@
-import RecipeFeed from "@/components/RecipeFeed/RecipeFeed";
+
+import RecipeFeedHome from "@/components/RecipeFeed/RecipeFeedHome";
 
 const RecipeFeedPage = () => {
   return (
     <div>
-      <RecipeFeed />
+      <RecipeFeedHome />
     </div>
   );
 };

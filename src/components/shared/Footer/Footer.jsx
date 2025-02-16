@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import logo from '@/assets/logo.png'
+import logo from "@/assets/logo.png";
 import Image from "next/image";
 
 const Footer = () => {
@@ -19,15 +19,15 @@ const Footer = () => {
               />
             </div>
             <p className="font-bold">
-             Chef.
+              Chef.
               <br />
               Providing reliable community since 1992
             </p>
-            <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+            <p className="text-gray-300">
+              Copyright © {new Date().getFullYear()} - All right reserved
+            </p>
           </aside>
-          <nav>
-          
-          </nav>
+          <nav></nav>
         </footer>
       </div>
     </div>

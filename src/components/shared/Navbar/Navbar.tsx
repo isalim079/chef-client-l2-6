@@ -14,7 +14,7 @@ const Navbar = () => {
   const pathname = usePathname()
 
   return (
-    <div className={`overflow-hidden absolute ${pathname === '/' ? 'bg-black/50' : 'bg-dark-green'} z-30 w-full`}>
+    <div className={`overflow-hidden absolute ${pathname === '/' ? 'bg-black/50' : 'bg-gray-800'} z-30 w-full`}>
       <div className="max-w-screen-xl mx-auto">
         <div className="drawer">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
