@@ -13,7 +13,7 @@ const Subscription = () => {
   return (
     <div>
       <div>
-        <h1 className="text-center pt-28 font-bold font-sourGummy text-4xl">
+        <h1 className="text-center pt-28 font-bold font-cherrySwash text-4xl">
           Subscription Plan
         </h1>
 
