@@ -7,7 +7,7 @@ import timing from "@/assets/animation/timing.json";
 
 const DesertSection = () => {
   return (
-    <div className=" font-poppins py-16 lg:py-28 px-6 lg:px-0">
+    <div className=" font-poppins py-16 lg:py-20 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
         <div className="text-gray-800">

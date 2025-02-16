@@ -17,7 +17,7 @@ const FeaturedRecipe = () => {
   };
 
   return (
-    <div className=" font-poppins py-16 lg:py-28 px-6 lg:px-0">
+    <div className=" font-poppins py-16 lg:py-20 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         <div>
           <h1 className="lg:text-5xl text-2xl font-bold text-center text-gray-800 font-cherrySwash">

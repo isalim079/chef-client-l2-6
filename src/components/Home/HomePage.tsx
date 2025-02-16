@@ -7,6 +7,7 @@ import HeroSection from "./HeroSection/HeroSection";
 import OurCommunity from "./OurCommunity/OurCommunity";
 import RecipeFeedFav from "./RecipeFeedFav/RecipeFeedFav";
 import TopContributors from "./TopContributors/TopContributors";
+import VideoRecipe from "./VideoRecipe/VideoRecipe";
 
 
 const HomePage = () => {
@@ -18,6 +19,7 @@ const HomePage = () => {
       <OurCommunity />
       <RecipeFeedFav />
       <DesertSection />
+      <VideoRecipe />
     </div>
   );
 };
