@@ -5,7 +5,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ["i.ibb.co.com", "i.ibb.co", "lh3.googleusercontent.com"],
+    domains: ["i.ibb.co.com", "i.ibb.co", "lh3.googleusercontent.com", "images.pexels.com"],
   },
   webpack: (config) => {
     config.optimization.splitChunks = {

@@ -1,5 +1,6 @@
 "use client";
 
+import DesertSection from "./DesertSection/DesertSection";
 // import dynamic from "next/dynamic";
 import FeaturedRecipe from "./FeaturedRecipe/FeaturedRecipe";
 import HeroSection from "./HeroSection/HeroSection";
@@ -16,6 +17,7 @@ const HomePage = () => {
       <TopContributors />
       <OurCommunity />
       <RecipeFeedFav />
+      <DesertSection />
     </div>
   );
 };
