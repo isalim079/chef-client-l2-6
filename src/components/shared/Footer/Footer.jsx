@@ -2,10 +2,13 @@
 
 import logo from "@/assets/logo.png";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname()
+  // console.log(pathname);
   return (
-    <div>
+    <div className={`${pathname.includes('/recipe-feed') ? 'hidden' : 'block'}`}>
       <div>
         <footer className="footer footer-center bg-gray-800 font-poppins text-white p-10 pt-16">
           <aside>

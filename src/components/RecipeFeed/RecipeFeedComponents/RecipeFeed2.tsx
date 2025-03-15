@@ -61,7 +61,7 @@ const RecipeFeed2 = () => {
 
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto font-poppins">
+      <div className="max-w-screen-xl mx-auto font-poppins p-14">
         <div>
           {isLoading ? (
             <Loading />

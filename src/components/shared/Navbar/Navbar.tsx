@@ -11,10 +11,12 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const { logout, user } = useAuth();
 
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <div className={`overflow-hidden absolute ${pathname === '/' ? 'bg-black/50' : 'bg-gray-800'} z-30 w-full`}>
+    <div
+      className={`overflow-hidden bg-gray-800 ${pathname === '/' ? 'sticky top-0 z-30' : ''} w-full`}
+    >
       <div className="max-w-screen-xl mx-auto">
         <div className="drawer">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -58,7 +60,6 @@ const Navbar = () => {
                       Contact Us
                     </Link>
                   </li>
-                 
                 </ul>
                 {/* Action Button */}
                 <div className="flex">
@@ -105,58 +106,58 @@ const Navbar = () => {
             <ul className="menu bg-base-200 min-h-full w-80 p-4">
               {/* Sidebar content here */}
               <li>
-                    <Link className="font-semibold" href={`/create-recipe`}>
-                      Create Recipe
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="font-semibold" href={`/recipe-feed`}>
-                      Recipe Feed
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="font-semibold" href={`/about-us`}>
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="font-semibold" href={`/contact-us`}>
-                      Contact Us
-                    </Link>
-                  </li>
-                   {/* Action Button */}
-                <div className="flex mt-5">
-                  <div>
-                    {user ? (
-                      <div>
-                        <Link href={`/${user.role}-dashboard`}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                            Dashboard
-                          </button>
-                        </Link>
-                        <button
-                          className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
-                          onClick={() => logout()}
-                        >
-                          Logout
+                <Link className="font-semibold" href={`/create-recipe`}>
+                  Create Recipe
+                </Link>
+              </li>
+              <li>
+                <Link className="font-semibold" href={`/recipe-feed`}>
+                  Recipe Feed
+                </Link>
+              </li>
+              <li>
+                <Link className="font-semibold" href={`/about-us`}>
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link className="font-semibold" href={`/contact-us`}>
+                  Contact Us
+                </Link>
+              </li>
+              {/* Action Button */}
+              <div className="flex mt-5">
+                <div>
+                  {user ? (
+                    <div>
+                      <Link href={`/${user.role}-dashboard`}>
+                        <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          Dashboard
                         </button>
-                      </div>
-                    ) : (
-                      <div className="">
-                        <Link href={"/login"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                            Login
-                          </button>
-                        </Link>
-                        <Link className="ml-4" href={"/register"}>
-                          <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
-                            Register
-                          </button>
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                      </Link>
+                      <button
+                        className="px-4 py-2 ml-4 rounded-md bg-dark-green shadow-sm text-primary-white"
+                        onClick={() => logout()}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <Link href={"/login"}>
+                        <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          Login
+                        </button>
+                      </Link>
+                      <Link className="ml-4" href={"/register"}>
+                        <button className="px-4 py-2 rounded-md bg-dark-green shadow-sm text-primary-white">
+                          Register
+                        </button>
+                      </Link>
+                    </div>
+                  )}
                 </div>
+              </div>
             </ul>
           </div>
         </div>

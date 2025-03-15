@@ -2,7 +2,7 @@
 import Image from "next/image";
 import logo from "../../../assets/logoW.png";
 import Link from "next/link";
-import {  HiUser, HiUserGroup } from "react-icons/hi";
+import { HiUser, HiUserGroup } from "react-icons/hi";
 import { useAuth } from "@/context/AuthContext";
 import { BiLogOut } from "react-icons/bi";
 
@@ -21,7 +21,6 @@ const AdminSidebar = () => {
             </Link>
           </div>
           <div className="text-primary-white flex flex-col gap-1 mt-6">
-            
             <Link
               className="p-2 flex items-center gap-2"
               href="/admin-dashboard/manage-recipe"
@@ -34,7 +33,7 @@ const AdminSidebar = () => {
             >
               <HiUserGroup className="text-lg" /> Manage User
             </Link>
-         
+
             <button
               onClick={() => logout()}
               className="p-2 flex items-center gap-2"

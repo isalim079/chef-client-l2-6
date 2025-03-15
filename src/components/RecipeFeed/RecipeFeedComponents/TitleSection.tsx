@@ -7,54 +7,79 @@ interface TitleSectionProps {
   item: any;
   findUser: any;
   user: any;
-  axiosPublic: any; 
+  axiosPublic: any;
   getAllRecipe: () => void;
-  router: any
+  router: any;
 }
 
-const TitleSection = ({ item, findUser, user, axiosPublic, getAllRecipe, router }: TitleSectionProps) => {
+const TitleSection = ({
+  item,
+  findUser,
+  user,
+  axiosPublic,
+  getAllRecipe,
+  router,
+}: TitleSectionProps) => {
+  const handleFollow = async (item: any) => {
+    // console.log(item);
+    const followerData = {
+      following: true,
+      name: findUser?.name,
+      email: user?.email,
+      image: findUser?.image,
+    };
 
-    const handleFollow = async (userEmail: string) => {
-        const followerData = {
-          following: true,
-          name: findUser?.name,
-          email: user?.email,
-          image: findUser?.image,
-        };
-    
-        try {
-          const res = await axiosPublic.patch(
-            `api/users/${userEmail}/followers`,
-            followerData,
-          );
-          if (res.data.success) {
-            toast.success("You followed this chef now!");
-            getAllRecipe();
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error("You are already following this chef!");
-        }
-      };
+    const followingData = {
+      following: true,
+      name: item?.name,
+      email: item?.email,
+      image: item?.profileImg,
+    };
 
-      const handleUnFollow = async (userEmail: string, followerEmail: string) => {
-        try {
-          const res = await axiosPublic.delete(
-            `/api/users/${userEmail}/followers/${followerEmail}`,
-          );
-          if (res.data.success) {
-            toast.success("Unfollowed this chef now!");
-            getAllRecipe();
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error("You are not following this chef now!");
-        }
-      };
+    try {
+      await axiosPublic.patch(
+        `/api/users/${user?.email}/followings`,
+        followingData,
+      );
+      
+    } catch (error) {
+      console.log(error);
+   
+    }
 
-      const handleDetailsNavigate = async (id: string) => {
-        router.push(`/recipe-feed/${id}`);
-      };
+    try {
+      const res = await axiosPublic.patch(
+        `/api/users/${item?.userEmail}/followers`,
+        followerData,
+      );
+      if (res.data.success) {
+        toast.success("You followed this chef now!");
+        getAllRecipe();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("You are already following this chef!");
+    }
+  };
+
+  const handleUnFollow = async (userEmail: string, followerEmail: string) => {
+    try {
+      const res = await axiosPublic.delete(
+        `/api/users/${userEmail}/followers/${followerEmail}`,
+      );
+      if (res.data.success) {
+        toast.success("Unfollowed this chef now!");
+        getAllRecipe();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("You are not following this chef now!");
+    }
+  };
+
+  const handleDetailsNavigate = async (id: string) => {
+    router.push(`/recipe-feed/${id}`);
+  };
 
   return (
     <div>
@@ -74,7 +99,7 @@ const TitleSection = ({ item, findUser, user, axiosPublic, getAllRecipe, router 
           <div className="flex gap-3 mt-1">
             {/* follow unfollow section */}
             <button
-              onClick={() => handleFollow(item?.email as string)}
+              onClick={() => handleFollow(item)}
               className="px-3 py-1 rounded-2xl border border-dark-green text-sm font-semibold hover:shadow-md hover:bg-dark-green hover:text-white transition-all duration-200 ease-in-out hover:scale-[94%]"
             >
               Follow

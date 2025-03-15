@@ -16,6 +16,13 @@ export type TFollowerInfo = {
   email: string;
   image: string;
 }
+
+export type TFollowingInfo = {
+  following: boolean;
+  name: string;
+  email: string;
+  image: string;
+}
 type TUser = {
   _id: string;
   name: string;
@@ -28,6 +35,7 @@ type TUser = {
   totalSpends?: number;
   subScriptionInfo?: TSubscriptionInfo[];
   followers?: TFollowerInfo[];
+  followings?: TFollowingInfo[];
 };
 
 type AuthContextType = {
