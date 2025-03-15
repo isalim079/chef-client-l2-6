@@ -186,9 +186,6 @@ const RecipeFeed = () => {
     commentId: string,
   ) => {
     e.preventDefault();
-    // console.log(recipeId, 'recipeId');
-    // console.log(commentId, 'commentId');
-    // console.log(e.target.comments.value, 'data');
 
     const updatedComment = {
       updatedComment: e.target.comments.value,
@@ -271,12 +268,7 @@ const RecipeFeed = () => {
   return (
     <div className="">
       <div className="max-w-screen-xl mx-auto font-poppins">
-        {/* Title section
-        <div>
-          <h1 className="text-center text-4xl font-bold uppercase text-gray-800 ">
-            Welcome to your recipe feed
-          </h1>
-        </div> */}
+      
         <div>
           {isLoading ? (
             <Loading />
@@ -357,18 +349,7 @@ const RecipeFeed = () => {
                         <div>
                           <button
                             className="border border-primary-orange p-2 rounded-full"
-                            // onClick={() => {
-                            //   const dialog = document.getElementById(
-                            //     `${item._id}`
-                            //   ) as HTMLDialogElement | null;
-                            //   if (dialog) {
-                            //     dialog.showModal();
-                            //   } else {
-                            //     console.error(
-                            //       `Dialog with ID ${item._id} not found`
-                            //     );
-                            //   }
-                            // }}
+                        
                             onClick={() => setActiveModal(item._id as string)}
                           >
                             <FaStar className="text-primary-orange" />

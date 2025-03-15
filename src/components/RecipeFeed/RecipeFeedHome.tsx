@@ -1,6 +1,7 @@
 "use client"
 
-import RecipeFeed from "./RecipeFeed";
+// import RecipeFeed from "./RecipeFeed";
+import RecipeFeed2 from "./RecipeFeedComponents/RecipeFeed2";
 import RecipeFeedProfile from "./RecipeFeedProfile";
 
 const RecipeFeedHome = () => {
@@ -18,7 +19,7 @@ const RecipeFeedHome = () => {
                 </div>
                 {/* middle section */}   
                 <div className="col-span-6 ">
-                    <RecipeFeed />
+                    <RecipeFeed2 />
                 </div>
                 {/* right section */}
                 <div className="col-span-3 ">

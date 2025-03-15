@@ -6,7 +6,7 @@ import { BsArrowRightCircle } from "react-icons/bs";
 import { heroData } from "./HeroData";
 import Marquee from "react-fast-marquee";
 import Lottie from "lottie-react";
-import starAnim from '@/assets/animation/star.json'
+import starAnim from "@/assets/animation/star.json";
 
 const HeroSection = () => {
   return (
@@ -63,10 +63,13 @@ const HeroSection = () => {
                         </h5>
                         <div className="absolute -top-8 px-5 w-full flex items-center justify-between">
                           <div className="flex items-center font-cherrySwash font-bold text-lg text-black bg-white px-3 rounded-lg">
-                            <span>{item.rating}</span> <Lottie animationData={starAnim} className="w-10" />
+                            <span>{item.rating}</span>{" "}
+                            <Lottie animationData={starAnim} className="w-10" />
                           </div>
                           <div className="">
-                            <p className="font-cherrySwash font-bold text-lg text-black bg-white px-3 py-[8px] rounded-lg">{item.cook_time}</p>
+                            <p className="font-cherrySwash font-bold text-lg text-black bg-white px-3 py-[8px] rounded-lg">
+                              {item.cook_time}
+                            </p>
                           </div>
                         </div>
                       </div>
