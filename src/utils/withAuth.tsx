@@ -3,7 +3,7 @@
 
 import Loading from "@/components/shared/Loading/Loading";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { useEffect, ComponentType, useState } from "react";
 import toast from "react-hot-toast";
@@ -18,16 +18,20 @@ const withAuth = (WrappedComponent: ComponentType<WithAuthProps>) => {
     const router = useRouter();
     const [isHydrated, setIsHydrated] = useState(false);
 
+    const pathname = usePathname();
+
     useEffect(() => {
       setIsHydrated(true);
     }, []);
 
     useEffect(() => {
       if (isHydrated && !user) {
-        toast.error("You need to login first");
+        if (pathname !== "/") {
+          toast.error("You need to login first");
+        }
         setTimeout(() => {
           router.push("/login");
-        }, 1500);
+        }, 500);
       }
     }, [user, router, isHydrated]);
 
