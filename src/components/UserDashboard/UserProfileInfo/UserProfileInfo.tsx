@@ -42,6 +42,7 @@ export type TUser = {
   image: string;
   role: "admin" | "user";
   address?: string;
+  bio?: string;
   userType?: "free" | "premium";
   totalSpends?: number;
   subScriptionInfo?: TSubscriptionInfo[];

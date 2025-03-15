@@ -94,7 +94,7 @@ const Followers = () => {
 
                   {/* Profile Button */}
                   <Link
-                    href={`/${follower.role}-dashboard/profile`} // Update the link as needed
+                    href={`/recipe-feed/view-profile/${follower?.email}`} 
                     className="w-full"
                   >
                     <button className="w-full bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors duration-300">
