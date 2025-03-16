@@ -32,7 +32,8 @@ const menuItems = [
   },
   {
     icon: <FaNewspaper className="mr-2 text-gray-700" />,
-    label: "Latest News",
+    label: "Followings",
+    link: "/recipe-feed/followings",
   },
   { icon: <FaCalendarAlt className="mr-2 text-gray-700" />, label: "Events" },
   { icon: <FaUsers className="mr-2 text-gray-700" />, label: "Groups" },
@@ -50,7 +51,7 @@ const RecipeFeedProfile = () => {
   const getAllRecipe = async () => {
     await axiosPublic.get(`/allRecipes`).then((res) => {
       setAllRecipeData(res.data.data);
-    });
+    }); 
   };
 
   useEffect(() => {
