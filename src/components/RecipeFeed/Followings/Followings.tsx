@@ -125,7 +125,7 @@ const Followings = () => {
                   {/* View Profile and Unfollow Buttons */}
                   <div className="flex space-x-4">
                     <Link
-                      href={`/${following.role}-dashboard/profile`} // Update the link as needed
+                      href={`/recipe-feed/view-profile/${following?.email}`} // Update the link as needed
                       className="w-full"
                     >
                       <button className="border border-gray-800 px-2 py-1 rounded-md hover:bg-gray-800 transition-all duration-200 ease-in-out hover:text-white">

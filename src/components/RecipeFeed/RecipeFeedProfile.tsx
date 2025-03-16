@@ -10,10 +10,6 @@ import {
   FaHome,
   FaUserFriends,
   FaNewspaper,
-  FaCalendarAlt,
-  FaUsers,
-  FaBell,
-  FaCog,
 } from "react-icons/fa";
 import { TRecipe } from "./RecipeInterface";
 import { TUser } from "../UserDashboard/UserProfileInfo/UserProfileInfo";
@@ -35,10 +31,6 @@ const menuItems = [
     label: "Followings",
     link: "/recipe-feed/followings",
   },
-  { icon: <FaCalendarAlt className="mr-2 text-gray-700" />, label: "Events" },
-  { icon: <FaUsers className="mr-2 text-gray-700" />, label: "Groups" },
-  { icon: <FaBell className="mr-2 text-gray-700" />, label: "Notifications" },
-  { icon: <FaCog className="mr-2 text-gray-700" />, label: "Settings" },
 ];
 
 const RecipeFeedProfile = () => {

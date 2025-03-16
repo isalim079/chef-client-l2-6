@@ -78,6 +78,7 @@ const RecipeFeed2 = () => {
                       findUser={findUser}
                       router={router}
                       getAllRecipe={getAllRecipe}
+                    token ={token}
                     />
                     {/* divider */}
                     <div className="border my-5"></div>
