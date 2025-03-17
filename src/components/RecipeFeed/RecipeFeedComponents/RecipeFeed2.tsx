@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Loading from "@/components/shared/Loading/Loading";
@@ -13,6 +14,7 @@ import RecipeUpVote from "./RecipeUpVote";
 import RecipeDownVote from "./RecipeDownVote";
 import RecipeComments from "./RecipeComments";
 import Link from "next/link";
+import RecipeContent from "./RecipeContent";
 
 const RecipeFeed2 = () => {
   const axiosPublic = useAxiosPublic();
@@ -78,16 +80,26 @@ const RecipeFeed2 = () => {
                       findUser={findUser}
                       router={router}
                       getAllRecipe={getAllRecipe}
-                    token ={token}
+                      token={token}
                     />
                     {/* divider */}
                     <div className="border my-5"></div>
 
                     {/* recipe formula */}
                     <div className="prose">
-                      <div
+                      {/* <div
                         dangerouslySetInnerHTML={{ __html: item?.recipe }}
-                      ></div>
+                      ></div> */}
+                      <RecipeContent recipe={item?.recipe} />
+                      <div className="mt-5">
+                        <img
+                          src={item?.image}
+                          width={800}
+                          height={100}
+                          alt="image"
+                          className="object-cover w-[680px] h-[320px]"
+                        />
+                      </div>
                     </div>
                     <div className="flex gap-7 mt-7">
                       {/* Rating */}
