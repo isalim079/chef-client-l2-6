@@ -8,7 +8,7 @@ import axios from "axios";
 const useAxiosPublic = () => {
   const instance = useMemo(() => {
     return axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://recipe-sharing-community-server-dun.vercel.app",
     });
   }, []);
 

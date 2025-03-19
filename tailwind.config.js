@@ -30,6 +30,16 @@ module.exports = {
         // "light-olive": "#E7E5E1",
         // "olive-green": "#485A49"
       },
+      animation: {
+        float: "float 3s ease-in-out infinite",
+        "spin-slow": "spin 3s linear infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
     },
   },
   plugins: [daisyui, tailwindcssMotion],

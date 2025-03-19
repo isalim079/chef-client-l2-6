@@ -7,6 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import { BiLogOut } from "react-icons/bi";
 
 import withAuth from "@/utils/withAuth";
+import { MdDashboard } from "react-icons/md";
 
 const AdminSidebar = () => {
   const { logout } = useAuth();
@@ -21,6 +22,12 @@ const AdminSidebar = () => {
             </Link>
           </div>
           <div className="text-primary-white flex flex-col gap-1 mt-6">
+            <Link
+              className="p-2 flex items-center gap-2"
+              href="/admin-dashboard"
+            >
+              <MdDashboard className="text-lg" /> Dashboard
+            </Link>
             <Link
               className="p-2 flex items-center gap-2"
               href="/admin-dashboard/manage-recipe"

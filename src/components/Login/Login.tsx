@@ -45,6 +45,7 @@ const Login = () => {
         const token = res.data.token;
         const user = res.data.data;
         login(user, token);
+        // console.log(res.data.data.role);
 
         setIsLoading(false);
         toast.success("User Logged in successfully", {
@@ -53,7 +54,7 @@ const Login = () => {
 
         reset();
         setTimeout(() => {
-          router.push("/");
+          router.push(`/${user?.role}-dashboard`);
         }, 1500);
       }
     } catch (error: any) {
