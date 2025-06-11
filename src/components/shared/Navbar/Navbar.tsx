@@ -15,21 +15,21 @@ const Navbar = () => {
 
   return (
     <div
-      className={`overflow-hidden bg-gray-800 ${pathname === '/' ? 'sticky top-0 z-30' : ''} w-full`}
+      className={`overflow-hidden bg-gray-800 ${pathname === "/" ? "sticky top-0 z-30" : ""} w-full`}
     >
       <div className="max-w-screen-xl mx-auto">
         <div className="drawer">
-          <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+          <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
             <div className="navbar w-full ">
               <div className="flex-none lg:hidden ">
                 <label
-                  htmlFor="my-drawer-3"
+                  htmlFor="navbarDrawer"
                   aria-label="open sidebar"
                   className="btn btn-square btn-ghost"
                 >
-                  <CgMenu className="text-2xl" />
+                  <CgMenu className="text-2xl text-white" />
                 </label>
               </div>
               <div className="mx-2 flex-1 px-2  justify-end lg:justify-start">
@@ -99,7 +99,7 @@ const Navbar = () => {
           </div>
           <div className="drawer-side">
             <label
-              htmlFor="my-drawer-3"
+              htmlFor="navbarDrawer"
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
