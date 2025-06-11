@@ -73,14 +73,14 @@ const CreateRecipe = () => {
 
   return (
     <div>
-      <div className="bg-primary-white p-14 shadow-md">
+      <div className="bg-primary-white p-6 lg:p-14 shadow-md">
         <div className="max-w-[920px] mx-auto ">
           {/* title container */}
-          <div className="mb-10 mt-20">
-            <h1 className="text-4xl font-bold font-sourGummy text-center uppercase text-dark-green">
+          <div className="mb-10 mt-10 lg:mt-20">
+            <h1 className="lg:text-4xl text-2xl font-bold font-sourGummy text-center uppercase text-dark-green">
               Create your recipe
             </h1>
-            <p className="text-center text-lg font-semibold">
+            <p className="text-center lg:text-lg font-semibold">
               Let the world know your talent
             </p>
           </div>
