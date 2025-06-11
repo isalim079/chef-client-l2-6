@@ -66,13 +66,13 @@ const Login = () => {
   };
 
   const fillAdminCredentials = () => {
-    setValue("email", "mraju2440@gmail.com"); 
-    setValue("password", "123456"); 
+    setValue("email", "mraju2440@gmail.com");
+    setValue("password", "123456");
   };
 
   const fillUserCredentials = () => {
-    setValue("email", "e@mail.com"); 
-    setValue("password", "123456"); 
+    setValue("email", "e@mail.com");
+    setValue("password", "123456");
   };
 
   return (
@@ -120,8 +120,15 @@ const Login = () => {
 
             <div className="flex lg:flex-row flex-col justify-between items-center mt-1">
               <div>
-              <button onClick={fillAdminCredentials} className="underline">Admin</button>
-              <button onClick={fillUserCredentials} className="underline ml-2">User</button>
+                <button onClick={fillAdminCredentials} className="underline">
+                  Admin
+                </button>
+                <button
+                  onClick={fillUserCredentials}
+                  className="underline ml-2"
+                >
+                  User
+                </button>
               </div>
               <Link className="underline" href={"/forgot-password"}>
                 Forgot Password?

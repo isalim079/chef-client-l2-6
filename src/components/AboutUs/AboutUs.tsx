@@ -3,15 +3,15 @@
 "use client";
 import aboutUs from "@/assets/animation/aboutUs.json";
 
-import {  topFoodLovers } from "./AboutUsData";
+import { topFoodLovers } from "./AboutUsData";
 import Lottie from "lottie-react";
 
 const AboutUs = () => {
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto pt-32 font-poppins">
+      <div className="max-w-screen-xl mx-auto lg:pt-32 font-poppins">
         {/* ------------------ top section -------------------- */}
-        <div className="grid lg:grid-cols-2 items-center lg:gap-10 px-2 lg:px-2">
+        <div className="grid lg:grid-cols-2 items-center lg:gap-10 px-6 lg:px-2">
           <div className="order-last text-gray-800">
             <h1 className="lg:text-5xl text-2xl font-bold uppercase mb-2 font-sourGummy text-end">
               Bringing Food Lovers Together
@@ -34,13 +34,13 @@ const AboutUs = () => {
 
         {/* ----------------- Our team members ----------------- */}
         <div>
-          <h1 className="text-center text-lg lg:text-3xl uppercase mt-20 font-bold text-primarySite font-sourGummy">
+          <h1 className="text-center text-xl lg:text-3xl uppercase mt-10 lg:mt-20 font-bold text-primarySite font-sourGummy">
             Our top food lovers
           </h1>
 
-          <div className="w-full border border-gray-800 mb-16 mt-5"></div>
+          <div className="w-full border border-gray-800 mb-10 lg:mb-16 mt-5"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 px-2 lg:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 px-6 lg:px-0">
           {topFoodLovers.map((item, index) => (
             <div
               key={index}
@@ -75,8 +75,10 @@ const AboutUs = () => {
         </div>
 
         {/* --------------- contact information --------------------- */}
-        <div className="my-16 px-2 lg:px-0">
-          <h2 className="text-3xl font-bold text-primarySite font-sourGummy ">Contact Us</h2>
+        <div className="my-16 px-6 lg:px-0">
+          <h2 className="text-3xl font-bold text-primarySite font-sourGummy ">
+            Contact Us
+          </h2>
           <p className="mt-4">
             We&apos;d love to hear from you! Reach out to us at:
           </p>
