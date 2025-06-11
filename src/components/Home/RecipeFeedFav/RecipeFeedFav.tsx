@@ -22,7 +22,7 @@ const RecipeFeedFav = () => {
         {/* bottom section */}
         <div className="grid lg:grid-cols-12 gap-14 mt-16">
           {/* left section */}
-          <div className=" col-span-4 p-14 rounded-lg bg-gray-800 text-white">
+          <div className=" lg:col-span-4 p-14 rounded-lg bg-gray-800 text-white ">
             <h5 className="text-xl font-cherrySwash font-bold">Categories</h5>
 
             {favCategoryData.map((item) => (
@@ -50,7 +50,7 @@ const RecipeFeedFav = () => {
             ))}
           </div>
           {/* right section */}
-          <div className="col-span-8 ">
+          <div className="lg:col-span-8 ">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
               {favRecipeData.map((recipe) => (
                 <div

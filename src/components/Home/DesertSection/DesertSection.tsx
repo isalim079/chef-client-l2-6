@@ -7,7 +7,7 @@ import timing from "@/assets/animation/timing.json";
 
 const DesertSection = () => {
   return (
-    <div className=" font-poppins py-16 lg:py-20 px-6 lg:px-0">
+    <div className=" font-poppins py-12 lg:py-20 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
         <div className="text-gray-800">
@@ -21,7 +21,7 @@ const DesertSection = () => {
         </div>
 
         {/* cards section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 lg:mt-16 ">
           {desertData.map((dessert) => (
             <div
               key={dessert.id}

@@ -29,11 +29,11 @@ const OurCommunity = () => {
           </p>
         </div>
 
-        <Marquee className="mt-16 " autoFill>
+        <Marquee className="mt-16 " autoFill pauseOnHover pauseOnClick>
           {communityData?.map((item, index) => (
             <div
               key={index}
-              className={` bg-gray-800 p-8 max-w-[720px] h-[380px] flex flex-col justify-between items-center rounded-lg cursor-pointer mr-10 ${
+              className={` bg-gray-800 p-4 lg:p-8 max-w-[260px] h-[380px] lg:max-w-[720px] lg:h-[380px] flex flex-col justify-between items-center rounded-lg cursor-pointer mr-10 ${
                 isHovered === index &&
                 ""
               }`}
@@ -42,15 +42,15 @@ const OurCommunity = () => {
             >
                <div className={` mx-auto  `}>
                 <Lottie
-                  className={`w-52 border-2 border-primary-orange p-2 rounded-lg shadow-[4px_4px_8px_0px_#facc15] ${
+                  className={`w-28 lg:w-52 border-2 border-primary-orange p-2 rounded-lg shadow-[4px_4px_8px_0px_#facc15] ${
                     isHovered === index &&
                     ""
                   }`}
                   animationData={item?.image}
                 />
               </div>
-              <div className={`text-white mt-7 text-center`}>
-                <p className="text-xl lg:text-2xl text-primary-orange font-bold mb-4 font-cherrySwash">
+              <div className={`text-white mt-5 lg:mt-7 text-center`}>
+                <p className="text-lg lg:text-2xl text-primary-orange font-bold mb-2 lg:mb-4 font-cherrySwash">
                   {item.title}
                 </p>
                 <p className="">{item.description}</p>

@@ -13,7 +13,7 @@ const VideoRecipe = () => {
   };
 
   return (
-    <div className="font-poppins py-16 lg:py-20 px-6 lg:px-0">
+    <div className="font-poppins py-12 lg:py-20 px-6 lg:px-0">
       <div className="max-w-screen-xl mx-auto">
         {/* title section */}
         <div className="text-gray-800">
@@ -28,7 +28,7 @@ const VideoRecipe = () => {
 
         {/* video data */}
         <div className="">
-          <div className="flex flex-col lg:flex-row gap-6 p-6 mt-14">
+          <div className="flex flex-col lg:flex-row gap-6 p-6 mt-8 lg:mt-14">
             {/* Left Side: Main Video Player */}
             <div className="lg:w-2/3">
               <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg">
