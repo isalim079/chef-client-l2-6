@@ -116,7 +116,7 @@ const TitleSection = ({
   };
 
   return (
-    <div>
+    <div className="">
       {/* Title Section */}
       <div className="flex lg:flex-row flex-col justify-center items-center lg:justify-between">
         <div className="w-full">
@@ -131,7 +131,7 @@ const TitleSection = ({
               />
               <div>
                 <p className="mt-2 font-bold">{item?.name}</p>
-                <p className="italic">{item?.title}</p>
+                <p className="italic lg:text-base text-sm">{item?.title}</p>
               </div>
             </div>
             <div>

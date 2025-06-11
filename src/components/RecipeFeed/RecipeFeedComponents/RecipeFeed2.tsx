@@ -63,15 +63,15 @@ const RecipeFeed2 = () => {
 
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto font-poppins p-14">
+      <div className="max-w-screen-xl mx-auto font-poppins lg:p-14">
         <div>
           {isLoading ? (
             <Loading />
           ) : (
-            <div className=" px-6 lg:px-0">
+            <div className="">
               {renderRecipes().map((item: TRecipe, index: number) => (
                 <div className="mb-20" key={index}>
-                  <div>
+                  <div className="">
                     {/* title section */}
                     <TitleSection
                       user={user}
@@ -94,10 +94,9 @@ const RecipeFeed2 = () => {
                       <div className="mt-5">
                         <img
                           src={item?.image}
-                          width={800}
-                          height={100}
+                          
                           alt="image"
-                          className="object-cover w-[680px] h-[320px]"
+                          className="object-cover w-[80%] lg:w-[680px] lg:h-[320px]"
                         />
                       </div>
                     </div>

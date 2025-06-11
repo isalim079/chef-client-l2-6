@@ -12,16 +12,16 @@ export default function RecipeFeedLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <div className="grid grid-cols-12">
+    <div className="overflow-hidden">
+      <div className="grid lg:grid-cols-12">
         {/* left section */}
-        <div className="col-span-3">
+        <div className="lg:col-span-3">
           <div className="sticky top-0">
             <RecipeFeedProfile />
           </div>
         </div>
         {/* middle section */}
-        <div className="col-span-9">{children}</div>
+        <div className="lg:col-span-9 max-w-[85%] lg:max-w-full lg:w-full mx-auto">{children}</div>
       </div>
     </div>
   );
