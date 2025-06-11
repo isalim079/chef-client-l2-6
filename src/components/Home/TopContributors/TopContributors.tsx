@@ -2,7 +2,7 @@
 "use client";
 
 import { topContributorsData } from "@/utils/SectionData";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 import { BiSolidLike } from "react-icons/bi";
 
 const TopContributors = () => {
@@ -21,20 +21,34 @@ const TopContributors = () => {
         </div>
 
         {/* card section */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-7 mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-7 mt-16">
           {topContributorsData?.map((item, index) => (
             <div
               key={index}
               className="bg-white p-2 rounded-md cursor-pointer hover:bg-transparent hover:border-2 hover:border-primary-white hover:text-primary-white hover:shadow-md hover:-translate-y-3 transition-all duration-300 ease-in-out"
             >
               <div className="flex justify-center items-center h-full relative">
-                <img className="h-full object-cover" src={item.profileImage} alt="" />
+                <img
+                  className="h-full object-cover"
+                  src={item.profileImage}
+                  alt=""
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-800">
-                    <div className="flex justify-end items-center h-full pb-3 font-semibold font-cherrySwash text-lg text-white flex-col">
-                      <h6 className="">{item.username}</h6>
-                        <p className=""><span className="text-primary-orange"><CountUp end={item.recipesPosted} enableScrollSpy /></span> Recipe</p>
-                        <p className="flex items-center gap-2"><span className="text-primary-orange"><CountUp end={item.upvotes} enableScrollSpy /></span> <BiSolidLike /></p>
-                    </div>
+                  <div className="flex justify-end lg:items-center pl-2 lg:pl-0 h-full pb-3 lg:font-semibold font-cherrySwash text-lg text-white flex-col ">
+                    <h6 className="">{item.username}</h6>
+                    <p className="">
+                      <span className="text-primary-orange">
+                        <CountUp end={item.recipesPosted} enableScrollSpy />
+                      </span>{" "}
+                      Recipe
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="text-primary-orange">
+                        <CountUp end={item.upvotes} enableScrollSpy />
+                      </span>{" "}
+                      <BiSolidLike />
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
