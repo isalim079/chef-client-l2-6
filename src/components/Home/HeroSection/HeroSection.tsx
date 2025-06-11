@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -7,33 +8,36 @@ import { heroData } from "./HeroData";
 import Marquee from "react-fast-marquee";
 import Lottie from "lottie-react";
 import starAnim from "@/assets/animation/star.json";
+import { useState } from "react";
 
 const HeroSection = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div>
       <div className="font-poppins relative">
         {/* background image */}
-        <div>
-          <Image
+        <div className="">
+          <img
+            loading="lazy"
+            onLoad={() => setIsLoaded(true)}
             alt="Banner Image"
-            width={100}
-            height={400}
+            className={`object-cover lg:h-[400px] h-[720px]  ${isLoaded ? "blur-0 brightness-100 scale-100" : "blur-sm brightness-75 scale-105"}`}
             src="https://i.ibb.co.com/hJQZMGMC/heroBg.jpg"
-            layout="responsive"
           />
         </div>
         <div className="bg-black/50 absolute inset-0 flex justify-center items-center text-white">
-          <div className="grid grid-cols-2 max-w-screen-xl mx-auto">
+          <div className="grid lg:grid-cols-2 max-w-screen-xl mx-auto">
             <div className=" px-6 lg:px-0 ">
               <div className="flex-1 flex flex-col justify-start">
-                <h1 className="text-2xl lg:text-5xl font-bold  text-center lg:text-start font-cherrySwash ">
+                <h1 className="text-2xl lg:text-5xl font-bold  text-start font-cherrySwash ">
                   Welcome to the Recipe Sharing Community
                 </h1>
-                <p className="text-lg lg:max-w-[75%] mt-3 lg:mt-7  text-justify lg:text-start">
+                <p className=" lg:text-lg lg:max-w-[75%] mt-3 lg:mt-7  text-justify lg:text-start">
                   Discover, Share, and Organize Your Favorite Recipes with Cooks
                   from Around the World.
                 </p>
-                <div className=" mt-6 lg:mt-14 flex justify-center lg:justify-start mb-10 lg:mb-0">
+                <div className=" mt-6 lg:mt-14 flex  lg:justify-start mb-10 lg:mb-0">
                   <Link href={"/recipe-feed"}>
                     {" "}
                     <button className="border border-white text-white px-4 py-3 rounded-md flex items-center gap-3 font-bold ">
@@ -45,7 +49,7 @@ const HeroSection = () => {
               </div>
             </div>
             {/* right side */}
-            <div>
+            <div className="px-6 lg:px-0">
               <Marquee className="" autoFill pauseOnHover>
                 {heroData.map((item) => (
                   <div className="mr-5 rounded-lg relative" key={item.id}>
