@@ -21,7 +21,7 @@ const Footer = () => {
                 height={80}
               />
             </div>
-            <p className="font-bold">
+            <p className="lg:font-bold">
               Chef.
               <br />
               Providing reliable community since 1992

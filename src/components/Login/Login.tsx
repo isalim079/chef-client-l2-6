@@ -54,7 +54,8 @@ const Login = () => {
 
         reset();
         setTimeout(() => {
-          router.push(`/${user?.role}-dashboard`);
+          router.push(`/`);
+          // router.push(`/${user?.role}-dashboard`);
         }, 1500);
       }
     } catch (error: any) {
@@ -75,9 +76,9 @@ const Login = () => {
   };
 
   return (
-    <div className="pt-28">
-      <div className="grid lg:grid-cols-2 gap-16 max-w-screen-xl mx-auto">
-        <div className=" flex justify-center items-center ">
+    <div className="lg:pt-28 pt-0 px-6 lg:px-0">
+      <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 max-w-screen-xl mx-auto mb-10">
+        <div className="flex justify-center items-center order-first lg:order-last ">
           <Lottie animationData={vegetable} className="" />
         </div>
 
@@ -86,7 +87,7 @@ const Login = () => {
           <form
             action=""
             onSubmit={handleSubmit(onSubmit)}
-            className="border max-w-[620px] w-full px-16 py-10 rounded-2xl shadow-md bg-primary-white"
+            className="border max-w-[620px] w-full px-6 lg:px-16 py-6 lg:py-10 rounded-2xl shadow-md bg-primary-white"
           >
             {/* Logo */}
             <div className="mb-4 flex flex-col justify-center items-center w-full">
@@ -117,7 +118,7 @@ const Login = () => {
               placeholder="Enter your password"
             />
 
-            <div className="flex justify-between items-center mt-1">
+            <div className="flex lg:flex-row flex-col justify-between items-center mt-1">
               <div>
               <button onClick={fillAdminCredentials} className="underline">Admin</button>
               <button onClick={fillUserCredentials} className="underline ml-2">User</button>
