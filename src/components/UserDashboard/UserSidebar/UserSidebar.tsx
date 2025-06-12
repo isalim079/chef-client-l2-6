@@ -7,7 +7,7 @@ import { HiHome, HiUser, HiUserGroup } from "react-icons/hi";
 import { useAuth } from "@/context/AuthContext";
 import { BiLogOut } from "react-icons/bi";
 import { RiUserFollowFill } from "react-icons/ri";
-import withAuth from "@/utils/withAuth";
+// import withAuth from "@/utils/withAuth";
 const UserSidebar = () => {
   const { logout } = useAuth();
 
@@ -58,4 +58,4 @@ const UserSidebar = () => {
   );
 };
 
-export default withAuth(UserSidebar);
+export default UserSidebar;

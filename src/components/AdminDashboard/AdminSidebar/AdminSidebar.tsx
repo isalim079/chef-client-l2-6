@@ -6,7 +6,7 @@ import { HiUser, HiUserGroup } from "react-icons/hi";
 import { useAuth } from "@/context/AuthContext";
 import { BiLogOut } from "react-icons/bi";
 
-import withAuth from "@/utils/withAuth";
+// import withAuth from "@/utils/withAuth";
 import { MdDashboard } from "react-icons/md";
 
 const AdminSidebar = () => {
@@ -50,10 +50,8 @@ const AdminSidebar = () => {
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 };
 
-export default withAuth(AdminSidebar);
+export default AdminSidebar;

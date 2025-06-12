@@ -6,7 +6,7 @@ import { HiUser, HiUserGroup } from "react-icons/hi";
 import { useAuth } from "@/context/AuthContext";
 import { BiLogOut } from "react-icons/bi";
 
-import withAuth from "@/utils/withAuth";
+// import withAuth from "@/utils/withAuth";
 import { MdDashboard } from "react-icons/md";
 
 const AdminMobileSidebar = () => {
@@ -54,4 +54,4 @@ const AdminMobileSidebar = () => {
   );
 };
 
-export default withAuth(AdminMobileSidebar);
+export default AdminMobileSidebar;
