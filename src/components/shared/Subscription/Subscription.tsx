@@ -12,14 +12,14 @@ const stripePromise = loadStripe(
 const Subscription = () => {
   return (
     <div>
-      <div>
-        <h1 className="text-center pt-28 font-bold font-cherrySwash text-4xl">
+      <div className="">
+        <h1 className="text-center pt-10 lg:pt-28 font-bold font-cherrySwash text-4xl">
           Subscription Plan
         </h1>
 
         {/* plans */}
-        <div className="max-w-screen-xl mx-auto my-16">
-          <div className="w-96 mx-auto text-center bg-gray-100 p-10 rounded-3xl border-b-4 border-siteDefaultSecond">
+        <div className="max-w-screen-xl mx-auto my-16 px-6 lg:px-0">
+          <div className="lg:w-96 mx-auto text-center bg-gray-100 p-10 rounded-3xl border-b-4 border-siteDefaultSecond">
             <div>
               <h1 className="text-siteDefaultSecond text-2xl font-semibold font-sourGummy">
                 Chef Subscription

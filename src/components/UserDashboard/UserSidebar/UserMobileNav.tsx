@@ -20,7 +20,7 @@ const UserMobileNav = () => {
               <Image src={logo} width={70} height={70} alt="logo" />
             </Link>
           </div>
-          <div className="text-primary-white flex flex-col gap-3 mt-10 text-2xl">
+          <div className="text-primary-white flex flex-col gap-3 mt-10 text-xl">
             <Link
               className="p-2 flex items-center gap-4"
               href={`/user-dashboard`}

@@ -17,7 +17,7 @@ export default function UserDashboardLayout({
         <div className="col-span-2">
           <UserSidebar />
         </div>
-        <div className="col-span-10">{children}</div>
+        <div className="col-span-10 ">{children}</div>
       </div>
     </div>
   );

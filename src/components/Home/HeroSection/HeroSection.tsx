@@ -22,7 +22,7 @@ const HeroSection = () => {
             loading="lazy"
             onLoad={() => setIsLoaded(true)}
             alt="Banner Image"
-            className={`object-cover lg:h-[400px] h-[720px]  ${isLoaded ? "blur-0 brightness-100 scale-100" : "blur-sm brightness-75 scale-105"}`}
+            className={`object-cover lg:h-[400px] h-[780px] w-full ${isLoaded ? "blur-0 brightness-100 scale-100" : "blur-sm brightness-75 scale-105"}`}
             src="https://i.ibb.co.com/hJQZMGMC/heroBg.jpg"
           />
         </div>

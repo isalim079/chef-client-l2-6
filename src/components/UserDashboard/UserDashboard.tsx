@@ -48,34 +48,34 @@ const UserDashboard = () => {
           <h6 className="font-semibold text-lg mt-1">{user?.name}</h6>
         </div>
         {/*  */}
-         <div className="lg:hidden block">
-        <div className="drawer drawer-end">
-          <input
-            id="userMobileSidebarDrawer"
-            type="checkbox"
-            className="drawer-toggle"
-          />
-          <div className="drawer-content">
-            {/* Page content here */}
-            <label htmlFor="userMobileSidebarDrawer" className="">
-              <p className="p-3 bg-white shadow-md rounded-full w-fit flex ml-auto mr-6">
-                <HiSquaresPlus className="text-4xl" />
-              </p>
-            </label>
-          </div>
-          <div className="drawer-side z-50 h-full">
-            <label
-              htmlFor="userMobileSidebarDrawer"
-              aria-label="close sidebar"
-              className="drawer-overlay"
-            ></label>
-            <ul className="bg-gray-800 w-[65%] min-h-full p-6">
-              {/* Sidebar content here */}
-              <UserMobileNav />
-            </ul>
+        <div className="lg:hidden block">
+          <div className="drawer drawer-end">
+            <input
+              id="userMobileSidebarDrawer"
+              type="checkbox"
+              className="drawer-toggle"
+            />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label htmlFor="userMobileSidebarDrawer" className="">
+                <p className="p-3 bg-white shadow-md rounded-full w-fit flex ml-auto mr-6">
+                  <HiSquaresPlus className="text-4xl" />
+                </p>
+              </label>
+            </div>
+            <div className="drawer-side z-50 h-full">
+              <label
+                htmlFor="userMobileSidebarDrawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="bg-gray-800 w-[65%] min-h-full p-6">
+                {/* Sidebar content here */}
+                <UserMobileNav />
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
         {/* right section */}
         <div>

@@ -11,6 +11,8 @@ import TextField from "@/utils/ui/TextField";
 import ButtonLoading from "@/utils/ui/ButtonLoading";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import UserMobileNav from "../UserSidebar/UserMobileNav";
+import { HiSquaresPlus } from "react-icons/hi2";
 
 export type TSubscriptionInfo = {
   _id: string;
@@ -25,14 +27,14 @@ export type TFollowerInfo = {
   name: string;
   email: string;
   image: string;
-}
+};
 
 export type TFollowingInfo = {
   following: boolean;
   name: string;
   email: string;
   image: string;
-}
+};
 
 export type TUser = {
   _id: string;
@@ -120,13 +122,45 @@ const UserProfileInfo = () => {
   };
 
   return (
-    <div className="font-poppins">
-      <h1 className="text-center mt-10 text-3xl font-bold font-sourGummy">
+    <div className="font-poppins px-6 lg:px-0">
+
+      {/* mobile nav */}
+      <div className="lg:hidden block fixed right-0 top-5">
+        <div className="drawer drawer-end">
+          <input
+            id="userMobileSidebarDrawer"
+            type="checkbox"
+            className="drawer-toggle"
+          />
+          <div className="drawer-content">
+            {/* Page content here */}
+            <label htmlFor="userMobileSidebarDrawer" className="">
+              <p className="p-3 bg-white shadow-md rounded-full w-fit flex ml-auto mr-6">
+                <HiSquaresPlus className="text-2xl" />
+              </p>
+            </label>
+          </div>
+          <div className="drawer-side z-50 h-full">
+            <label
+              htmlFor="userMobileSidebarDrawer"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="bg-gray-800 w-[65%] min-h-full p-6">
+              {/* Sidebar content here */}
+              <UserMobileNav />
+            </ul>
+          </div>
+        </div>
+      </div>
+      {/*  */}
+
+      <h1 className="text-center mt-16 lg:mt-10 text-3xl font-bold font-sourGummy ">
         Welcome to your profile
       </h1>
-      <div className="flex justify-between items-center max-w-[920px] mx-auto bg-primary-white p-16 mt-10 rounded-lg shadow-md">
+      <div className="flex lg:flex-row flex-col justify-between items-center max-w-[920px] mx-auto bg-primary-white p-4 lg:p-16 mt-10 rounded-lg shadow-md">
         {/* Left side */}
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col lg:items-start items-center justify-center mb-10 lg:mb-0">
           {findUser?.image ? (
             <Image
               className="rounded-full mb-4"
