@@ -3,7 +3,9 @@
 
 import { useState, useEffect } from "react";
 import { FaUsers, FaChartLine, FaBox, FaDollarSign } from "react-icons/fa";
+import { HiSquaresPlus } from "react-icons/hi2";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import AdminMobileSidebar from "./AdminSidebar/AdminMobileSidebar";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState(0);
@@ -44,11 +46,43 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+        <h1 className="lg:text-3xl text-xl font-bold text-gray-800">Admin Dashboard</h1>
         {/* <button className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
           <FaCog className="mr-2" />
           Settings
         </button> */}
+
+            {/* mobile nav */}
+                <div className="lg:hidden block fixed right-0 top-5">
+                  <div className="drawer drawer-end">
+                    <input
+                      id="adminMobileSidebarDrawer"
+                      type="checkbox"
+                      className="drawer-toggle"
+                    />
+                    <div className="drawer-content">
+                      {/* Page content here */}
+                      <label htmlFor="adminMobileSidebarDrawer" className="">
+                        <p className="p-3 bg-white shadow-md rounded-full w-fit flex ml-auto mr-6">
+                          <HiSquaresPlus className="text-2xl" />
+                        </p>
+                      </label>
+                    </div>
+                    <div className="drawer-side z-50 h-full">
+                      <label
+                        htmlFor="adminMobileSidebarDrawer"
+                        aria-label="close sidebar"
+                        className="drawer-overlay"
+                      ></label>
+                      <ul className="bg-gray-800 w-[65%] min-h-full p-6">
+                        {/* Sidebar content here */}
+                        <AdminMobileSidebar />
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                {/*  */}
+
       </div>
 
       {/* Cards */}

@@ -13,7 +13,7 @@ export default function UserDashboardLayout({
 }>) {
   return (
     <div>
-      <div className="grid grid-cols-12">
+      <div className="grid lg:grid-cols-12">
         <div className="col-span-2">
           <AdminSidebar />
         </div>

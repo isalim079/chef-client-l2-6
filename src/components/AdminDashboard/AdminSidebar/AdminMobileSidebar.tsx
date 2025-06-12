@@ -9,13 +9,13 @@ import { BiLogOut } from "react-icons/bi";
 import withAuth from "@/utils/withAuth";
 import { MdDashboard } from "react-icons/md";
 
-const AdminSidebar = () => {
+const AdminMobileSidebar = () => {
   const { logout } = useAuth();
 
   return (
     <div>
-      <div className="fixed max-w-[16%] w-full hidden lg:block">
-        <div className="bg-gray-800 h-screen p-6 font-poppins">
+      <div className="">
+        <div className="bg-gray-800 h-screen font-poppins ">
           <div className="flex justify-center">
             <Link href={"/"}>
               <Image src={logo} width={70} height={70} alt="logo" />
@@ -50,10 +50,8 @@ const AdminSidebar = () => {
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 };
 
-export default withAuth(AdminSidebar);
+export default withAuth(AdminMobileSidebar);
