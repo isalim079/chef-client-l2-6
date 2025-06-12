@@ -9,6 +9,8 @@ import MonthlyTransactionChart from "./UserCharts/MonthlyTransactionChart";
 import FollowerFollowingChart from "./UserCharts/FollowerFollowingChart";
 import TotalRecipesChart from "./UserCharts/TotalRecipesChart";
 import { FaUserPlus, FaBook, FaDollarSign } from "react-icons/fa"; // Importing React Icons
+import { HiSquaresPlus } from "react-icons/hi2";
+import UserMobileNav from "./UserSidebar/UserMobileNav";
 
 const UserDashboard = () => {
   const { user, token } = useAuth();
@@ -40,10 +42,42 @@ const UserDashboard = () => {
   return (
     <div className="font-poppins p-10">
       <div className="flex justify-between items-center">
-        <div className="flex items-center flex-col">
+        {/* left section */}
+        <div className="lg:flex items-center flex-col hidden">
           <img className="w-20 rounded-full" src={user?.image} alt="" />
           <h6 className="font-semibold text-lg mt-1">{user?.name}</h6>
         </div>
+        {/*  */}
+         <div className="lg:hidden block">
+        <div className="drawer drawer-end">
+          <input
+            id="userMobileSidebarDrawer"
+            type="checkbox"
+            className="drawer-toggle"
+          />
+          <div className="drawer-content">
+            {/* Page content here */}
+            <label htmlFor="userMobileSidebarDrawer" className="">
+              <p className="p-3 bg-white shadow-md rounded-full w-fit flex ml-auto mr-6">
+                <HiSquaresPlus className="text-4xl" />
+              </p>
+            </label>
+          </div>
+          <div className="drawer-side z-50 h-full">
+            <label
+              htmlFor="userMobileSidebarDrawer"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="bg-gray-800 w-[65%] min-h-full p-6">
+              {/* Sidebar content here */}
+              <UserMobileNav />
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        {/* right section */}
         <div>
           <h6 className="text-3xl font-semibold">Welcome {user?.name}</h6>
           <p className="text-end text-lg font-semibold underline">
