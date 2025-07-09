@@ -219,31 +219,5 @@ NEXT_PUBLIC_STRIPE_PUBLIC_KEY=your_stripe_public_key
 }
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- Tailwind CSS for the utility-first styling
-- All contributors and the open-source community
-
----
-
-<div align="center">
-  <p>Made with ❤️ by <strong>Chef Team</strong></p>
-  <p>© 2024 Chef Recipe Sharing Community. All rights reserved.</p>
-</div>
-
----
 
 **Note**: When you reset your password, reset password mail sometime takes 5 to 6 minutes to arrive email
